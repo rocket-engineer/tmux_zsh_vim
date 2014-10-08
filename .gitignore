@@ -6,6 +6,12 @@
 !.vimrc
 !.vim/
 !.vim/*
+!.vim/after/*
+!.vim/colors/*
+!.vim/ftplugin/*
+!.vim/misc/*
+!.vim/syntax/*
+!.vim/vimrc/*
 !.zshrc
 !.zsh.d/
 !.zsh.d/*
