@@ -9,4 +9,5 @@
 !.zshrc
 !.zsh.d/
 !.zsh.d/*
+!.zsh.d/lib/*
 !.gitignore
