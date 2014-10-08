@@ -49,8 +49,8 @@ if 1 == VimRCBundlesDevel
 	Plugin 'tomtom/tcomment_vim'
 
 	" UltiSnps: Code Snippets
-	"Plugin 'SirVer/ultisnips'
-	"Plugin 'honza/vim-snippets'
+	Plugin 'SirVer/ultisnips'
+	Plugin 'honza/vim-snippets'
 
 	" YouCompleteMe: AutoCompletion for C-Semantic languages
 	"Plugin 'oblitum/YouCompleteMe'

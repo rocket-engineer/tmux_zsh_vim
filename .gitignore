@@ -10,6 +10,7 @@
 !.vim/colors/*
 !.vim/ftplugin/*
 !.vim/misc/*
+!.vim/misc/UltiSnips/*
 !.vim/syntax/*
 !.vim/vimrc/*
 !.zshrc

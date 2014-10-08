@@ -109,11 +109,12 @@ if 1 == VimRCBundlesOptions
     " | UltiSnips                                |
     " +------------------------------------------+
     
-    "let g:UltiSnipsExpandTrigger="<tab>"						" set UltiSnips trigger
-    "let g:UltiSnipsJumpForwardTrigger="<c-j>"		  " set UltiSnips forward trigger
-    "let g:UltiSnipsJumpBackwardTrigger="<c-k>"	  	" set UltiSnips backward trigger
-    "let g:UltiSnipsListSnippets="<c-tab>"					" set UltiSnips list command
-    "let g:UltiSnipsEditSplit = "vertical"          " open UltiSnips Edit Window vertically
+    let g:UltiSnipsExpandTrigger = "<tab>"                " set UltiSnips trigger
+    let g:UltiSnipsJumpForwardTrigger = "<c-n>"		        " set UltiSnips forward trigger
+    let g:UltiSnipsJumpBackwardTrigger = "<c-m>"          " set UltiSnips backward trigger
+    let g:UltiSnipsListSnippets = "<c-tab>"					      " set UltiSnips list command
+    let g:UltiSnipsEditSplit = "vertical"                 " open UltiSnips Edit Window vertically
+    let g:UltiSnipsSnippetsDir = "~/.vim/misc/UltiSnips"  " defines UltiSnips snippets directory
     
     
     " +------------------------------------------+
