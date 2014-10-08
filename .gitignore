@@ -1,0 +1,12 @@
+# Ignore everything ...
+*
+
+# ... but not these files!
+!.tmux.conf
+!.vimrc
+!.vim/
+!.vim/*
+!.zshrc
+!.zsh.d/
+!.zsh.d/*
+!.gitignore
