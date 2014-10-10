@@ -10,27 +10,27 @@ if 1 == VimRCBundlesOptions
     " +------------------------------------------+
     " | NERDTree                                 |
     " +------------------------------------------+
-
-		" settings
-    let g:NERDTreeWinSize = 40 											" set the width of the tree
-    let g:NERDTreeChDirMode=2 											" set current dir
-    let NERDTreeShowBookmarks=1 										" always show bookmarks
-    let NERDTreeIgnore=['.o$[[file]]'] 							" ignore object files
-    let g:nerdtree_tabs_open_on_console_startup=1 	" open NERDTree
-    autocmd VimEnter * wincmd p 										" move the cursor to the main window
-    "autocmd BufEnter * NERDTreeMirrorOpen 					" let NERDTree auto-open
     
-		" keymaps
-    nnoremap <silent> <F11> :NERDTreeTabsToggle<CR>			" open NERDTree
+   	" settings
+    let g:NERDTreeWinSize = 40 													" set the width of the tree
+    let g:NERDTreeChDirMode = 2 												" set current dir
+    let NERDTreeShowBookmarks = 1 											" always show bookmarks
+    let NERDTreeIgnore = ['.o$[[file]]'] 								" ignore object files
+    " let g:nerdtree_tabs_open_on_console_startup=1    	" open NERDTree
+    " autocmd VimEnter * wincmd p 												" move the cursor to the main window
+    "autocmd BufEnter * NERDTreeMirrorOpen 							" let NERDTree auto-open
+    
+    " keymaps
+    nnoremap <silent> <F10> :NERDTreeTabsToggle<CR>			" open NERDTree
     " nnoremap <silent> <S-q> :NERDTreeSteppedOpen<CR>			"	focus NERDTree
     " nnoremap <silent> <S-e> :NERDTreeSteppedClose<CR>			" unfocus NERDTree
-    
-    
+
+
     " +------------------------------------------+
     " | Airline                                  |
     " +------------------------------------------+
-
-		" settings
+   
+    " settings
     let g:airline#extensions#tabline#enabled = 1				" enable enhanced tabline
     let g:airline#extensions#tabline#show_buffers = 0		"	enable buffers with a single tab
     let g:airline#extensions#tabline#tab_min_count = 0	"	set tab_min_count to zero
@@ -38,22 +38,21 @@ if 1 == VimRCBundlesOptions
     let g:airline_powerline_fonts = 1                   " enable powerline fonts
     "let g:airline#extensions#syntastic#enabled = 1      " enable syntastic integration
     " set guif"+Pont=PowerlineSymbols
-    
+
 
     " +------------------------------------------+
     " | Indent Guides                            |
     " +------------------------------------------+
-
-		" settings
-		let g:indent_guides_enable_on_vim_startup = 1 			" enable Indent Guides at vim startup
+   
+    " settings
+    let g:indent_guides_enable_on_vim_startup = 1 			" enable Indent Guides at vim startup
     let g:indent_guides_start_level = 2 								" start indent guides at 2nd level
     let g:indent_guides_guide_size = 1 								  " use small indent guides
     let g:indent_guides_space_guides = 1 								" don't care about spaces
     let g:indent_guides_auto_colors = 0                 " indent guides color definition
     autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236
     autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=237
-    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'vim', 'conf']
-
+    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'taglist', 'conf']
 
 	endif
 
@@ -68,20 +67,39 @@ if 1 == VimRCBundlesOptions
     " | Taglist                                  |
     " +------------------------------------------+
     
-    let Tlist_Use_Right_Window = 1       " show the list on the right side of the window
-		let Tlist_WinWidth = 40              " set the width of the list
-    let Tlist_Show_One_File = 1          " only show tags for current file
+    " settings
+    let Tlist_Use_Right_Window = 1                      " show the list on the right side of the window
+	  let Tlist_WinWidth = 40                             " set the width of the list
+    let Tlist_Show_One_File = 1                         " only show tags for current file
+    let g:Tlist_Exit_OnlyWindow = 1                     " exit if Taglist is only window
     
     " keymaps
-    nnoremap <silent> <F5> :TlistUpdate<CR>
-    "inoremap <silent> <F5> :TlistUpdate<CR>
-    nnoremap <silent> <F10> :TlistToggle<CR>
-    "inoremap <silent> <F10> :TlistToggle<CR>
+    nnoremap <silent> <C-F5> :TlistUpdate<CR>
+    "inoremap <silent> <C-F5> :TlistUpdate<CR>
+    nnoremap <silent> <F11> :TlistToggle<CR>
+    "inoremap <silent> <F11> :TlistToggle<CR>
 
-    " define what to show
-    let s:tlist_def_cpp_settings = 'c++;n:namespace;v:variable;d:macro;t:typedef;'
-    
-    
+" If only 2 windows left, NERDTree and Tag_List, close vim or current tab
+fun! NoExcitingBuffersLeft()
+        exec 'qa'
+        echo "This was it!"
+  " if winnr("$") == 3
+  "   let w1 = bufname(winbufnr(1))
+  "   let w2 = bufname(winbufnr(2))
+  "   let w3 = bufname(winbufnr(3))
+  "   if (exists(":NERDTree")) && (w1 == "__Tag_List__" || w2 == "__Tag_List__" || w3 == "__Tag_List__")
+  "     if tabpagenr("$") == 1
+  "       echo "huhu: "w2
+  "       exec 'qa'
+  "     else
+  "       exec 'tabclose'
+  "     endif
+  "   endif
+  " endif
+endfun
+autocmd BufWinLeave * call NoExcitingBuffersLeft()
+  
+  
     " +------------------------------------------+
     " | delimitMate                              |
     " +------------------------------------------+
@@ -89,8 +107,8 @@ if 1 == VimRCBundlesOptions
     "let delimitMate_quotes = "\" '""'"
     let delimitMate_expand_space = 1                " enable expansion of spaces and new lineso
     let delimitMate_expand_cr = 1                   " enable expansion of spaces and new lineso
-        
-    
+
+
     " +------------------------------------------+
     " | TComment                                 |
     " +------------------------------------------+
@@ -103,8 +121,8 @@ if 1 == VimRCBundlesOptions
     
     " define additional comment styles
     "call tcomment#DefineType('chemkin','! %s')
-    
-    
+
+
     " +------------------------------------------+
     " | UltiSnips                                |
     " +------------------------------------------+
@@ -115,13 +133,13 @@ if 1 == VimRCBundlesOptions
     let g:UltiSnipsListSnippets = "<c-tab>"					      " set UltiSnips list command
     let g:UltiSnipsEditSplit = "vertical"                 " open UltiSnips Edit Window vertically
     let g:UltiSnipsSnippetsDir = "~/.vim/misc/UltiSnips"  " defines UltiSnips snippets directory
-    
-    
+
+
     " +------------------------------------------+
     " | YouCompleteMe                            |
     " +------------------------------------------+
-        
-    " global settings
+    
+    " settings
     "let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py' 	" locate global YCM conf file
     "let g:ycm_confirm_extra_conf = 0 													" don't ask for local conf confirmation
     "set pumheight=30 																					" limit popup menu height
@@ -145,14 +163,15 @@ if 1 == VimRCBundlesOptions
     "" let g:ycm_filetype_blacklist = {
     ""       \ 'fortran' : 1
     ""       \}
-    
-    
+
+
     " +------------------------------------------+
     " | Supertab                                 |
     " +------------------------------------------+
-        
     
-    
+    " settings
+
+
     " +------------------------------------------+
     " | Syntastic                                |
     " +------------------------------------------+

@@ -17,6 +17,9 @@ if 1 == VimRCBundlesStandard
 	" Tmuxline: tmux statusline generator and airline integration
 	Plugin 'edkolev/tmuxline.vim'
 
+  " Fixkey: this package makes it possible to use ALT-Keys
+  Plugin 'drmikehenry/vim-fixkey'
+
 	" Indent Guides: Visually displaying indent levels
 	Plugin 'nathanaelkane/vim-indent-guides'
 

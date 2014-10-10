@@ -1,4 +1,4 @@
-
+  
 " +------------------------------------------------------------------------------------------------+
 " | Key Mappings                                                                                   |
 " +------------------------------------------------------------------------------------------------+
@@ -45,8 +45,8 @@ endif
 
 " CTRL-S for saving, also in Insert and Visuell mode
 noremap <C-S> :update<CR>
-vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <C-O>:update<CR>
+vnoremap <C-S> <C-C>:update<CR><ESC>
+inoremap <C-S> <C-O>:update<CR><ESC>
 
 " CTRL-X for saving and closing, also in Insert and Visuell mode
 noremap <C-X> :x<CR>
@@ -59,8 +59,14 @@ vnoremap <C-Q> <Esc>:q<CR>
 inoremap <C-Q> <Esc>:q<CR>
 
 " open help in a vertical split with :Help or :H
-command -nargs=* -complete=help Help vertical belowright help <args>
-command -nargs=* -complete=help H vertical belowright help <args>
+command! -nargs=* -complete=help Help vertical belowright help <args>
+command! -nargs=* -complete=help H vertical belowright help <args>
+
+" break the habit of reaching for the arrow keys (disable arrow keys)
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
 
 " +----------------------------------------------+
@@ -99,24 +105,41 @@ nnoremap <silent> <C-Left> :tabm -1<CR>
 inoremap <silent> <C-Left> :tabm -1<CR>
 
 " move tab to the right
-nnoremap <silent> <C-K> :tabm +1<CR>
-inoremap <silent> <C-K> :tabm +1<CR>
+nnoremap <silent> <C-Right> :tabm +1<CR>
+inoremap <silent> <C-Right> :tabm +1<CR>
 
+
+" +----------------------------------------------+
+" | Tab Mappings                                 |
+" +----------------------------------------------+
 
 " window navigation
-"noremap <A-a> <C-W><C-H>		" move cursor to left window
-"noremap <A-d> <C-W><C-L>		" move cursor to right window
-"noremap <A-w> <C-W><C-J>		" move cursor to lower window
-"noremap <A-s> <C-W><C-K>		" move cursor to upper window
-"nnoremap <S-z> <C-W><C-R>	" swap top/bottom or left/right split
-"nnoremap <S-x> <C-W><C-T>	" break out current window into a new tabview
-"nnoremap <S-c> <C-W><C-o>	" close every window in the current tabview but the current one
+nnoremap <M-a> <C-W><C-H>		      " move cursor to left window
+inoremap <M-a> <Esc><C-W><C-H>		" move cursor to left window
+nnoremap <M-d> <C-W><C-L>		      " move cursor to right window
+inoremap <M-d> <Esc><C-W><C-L>		" move cursor to right window
+nnoremap <M-s> <C-W><C-J>		      " move cursor to lower window
+inoremap <M-s> <Esc><C-W><C-J>  	" move cursor to lower window
+nnoremap <M-w> <C-W><C-K>		      " move cursor to upper window
+inoremap <M-w> <Esc><C-W><C-K>		" move cursor to upper window
+nnoremap <M-x> <C-W><C-P>         " move cursor to previous windows
+inoremap <M-x> <Esc><C-W><C-P>    " move cursor to previous windows
 
-" break the habit of reaching for the arrow keys (disable arrow keys)
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
+" window rotation
+" nnoremap <M-S-h> <C-W>R	          " rotate window leftwards
+" inoremap <M-S-h> <Esc><C-W>R	    " rotate window leftwards
+" nnoremap <M-S-l> <C-W>r	          " rotate window rightwards
+" inoremap <M-S-l> <Esc><C-W>r	    " rotate window rightwards
+nnoremap <M-S-j> <C-W>x	          " swap current window with next one
+inoremap <M-S-j> <Esc><C-W>x	    " swap current window with next one
+nnoremap <M-S-c> <C-W>T	          " break out current window into a new tabview
+inoremap <M-S-c> <Esc><C-W>T	    " break out current window into a new tabview
+" nnoremap <S-c> <C-W><C-o>	" close every window in the current tabview but the current one
+
+
+" +----------------------------------------------+
+" | Folding Mappings                             |
+" +----------------------------------------------+
 
 " Set fold level
 "" map <silent> <F2> :set foldmethod=indent<CR>
@@ -126,6 +149,11 @@ noremap <Right> <Nop>
 "" map <silent> <F6> :set foldlevel=5<CR>
 "" map <silent> <F7> :set foldlevel=6<CR>
 "" map <silent> <F8> :set foldlevel=7<CR>
+
+
+" +----------------------------------------------+
+" | Pasting Mappings                             |
+" +----------------------------------------------+
 
 "" Paste block while inserting new lines to hold it
 "" nnoremap <Leader>p :call FancyPaste('*')<CR>

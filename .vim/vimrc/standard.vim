@@ -9,10 +9,11 @@
 
 set mouse=a                               " enable mouse
 set mousehide                             " hide the mouse cursor while typing
-"set nopaste                               " disable more convenient paste mode
+" set paste                               " enable more convenient paste mode
 set showcmd                               " show command line
 set encoding=utf-8                        " set coding set
 "set clipboard=unnamedplus                 "	copy stuff to clipboard
+set clipboard=unnamed,unnamedplus
 "set backspace=2                          " make backspace work like most other applications
 "set autoread                              " auto read external file changes
 set history=1000                          " keep 100 lines of history
@@ -42,7 +43,7 @@ set splitright                            " add new window to the right
 "set ruler  																					" enable ruler
 "set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) 	" A ruler on steroids
 "set showcmd   																			" show command line
-
+   
 
 " +----------------------------------------------+
 " | Appearance Settings                          |

@@ -45,7 +45,7 @@ Plugin 'gmarik/Vundle.vim'
 so ~/.vim/vimrc/bundles.vim
 
 call vundle#end()
-"filetype plugin on
+filetype plugin on
 
 
 " +------------------------------------------------------------------------------------------------+
@@ -61,16 +61,16 @@ if 1 == VimRCStandard
 	so ~/.vim/vimrc/standard.vim
 endif
 
+if 1 == VimRCFunctions
+	so ~/.vim/vimrc/functions.vim
+endif
+
 if 1 == VimRCDevel
 	so ~/.vim/vimrc/devel.vim
 endif
 
 if 1 == VimRCFiletypes
 	so ~/.vim/vimrc/filetypes.vim
-endif
-
-if 1 == VimRCFunctions
-	so ~/.vim/vimrc/functions.vim
 endif
 
 if 1 == VimRCKeymap
