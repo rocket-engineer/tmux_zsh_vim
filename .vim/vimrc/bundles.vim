@@ -50,7 +50,7 @@ if 1 == VimRCBundlesDevel
 
 	" UltiSnps: Code Snippets
 	Plugin 'SirVer/ultisnips'
-	Plugin 'honza/vim-snippets'
+	" Plugin 'honza/vim-snippets'
 
 	" YouCompleteMe: AutoCompletion for C-Semantic languages
 	"Plugin 'oblitum/YouCompleteMe'
