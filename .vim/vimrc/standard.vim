@@ -8,12 +8,13 @@
 " +----------------------------------------------+
 
 set mouse=a                               " enable mouse
+set ttymouse=urxvt
 set mousehide                             " hide the mouse cursor while typing
+set updatetime=500                     " set update time
 " set paste                               " enable more convenient paste mode
 set showcmd                               " show command line
 set encoding=utf-8                        " set coding set
 "set clipboard=unnamedplus                 "	copy stuff to clipboard
-set clipboard=unnamed,unnamedplus
 "set backspace=2                          " make backspace work like most other applications
 "set autoread                              " auto read external file changes
 set history=1000                          " keep 100 lines of history
@@ -34,7 +35,7 @@ set backup                                " make backup files
 set backupdir=~/.vim/backup/              " put backup files in backup dir
 set directory=~/.vim/tmp/                 " put swap files in temp dir
 set viewdir=~/.vim/views/                 " put view files in views dir
-                                          
+
 " --> window settings                     
 set splitbelow                            " add new window to the bottom
 set splitright                            " add new window to the right
@@ -43,7 +44,7 @@ set splitright                            " add new window to the right
 "set ruler  																					" enable ruler
 "set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) 	" A ruler on steroids
 "set showcmd   																			" show command line
-   
+
 
 " +----------------------------------------------+
 " | Appearance Settings                          |

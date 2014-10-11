@@ -27,7 +27,7 @@
 set nocompatible
 
 " load VimRC config file
-so ~/.vim/vimrc/vim.conf
+so ~/.vim/vimrc/vim-conf.vim
 
 
 " +------------------------------------------------------------------------------------------------+

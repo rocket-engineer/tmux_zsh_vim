@@ -26,24 +26,34 @@ if 1 == VimRCBundlesStandard
 	" Obsession: Writes the current state of Vim
 	"Plugin 'tpope/vim-obsession'
 
-	" Rainbow: Colorizes parentheses, brackets etc.
-	"Plugin 'oblitum/rainbow'
+  " Surround: Delete, change and add surroundings to string
+	Plugin 'surround.vim'
 
-	"Plugin 'EasyMotion'
-	"Plugin 'surround.vim'
-	"Plugin 'godlygeek/tabular'
-	"Plugin 'tpope/vim-eunuch'
+  " EasyMotion: Jump to words as easy as possible
+	Plugin 'Lokaltog/vim-easymotion'
+
+  " Fugitive: 
+  "Plugin 'tpope/fugitive'
 
 	" Vimshell:
 	"Plugin 'Shougo/vimshell.vim'
+
+	"Plugin 'godlygeek/tabular'
+	"Plugin 'tpope/vim-eunuch'
+
+  " Xterm_color_table: Shows the 256 colors of vim and their corresponding numbers
+  Plugin 'guns/xterm-color-table.vim'
 
 endif
 
 
 if 1 == VimRCBundlesDevel
 
-	" Taglist: Lists all Tags of a source file
-	Plugin 'taglist.vim'
+  " Tagbar: Lists all tags of a source file
+  Plugin 'majutsushi/tagbar'
+
+	" Rainbow: Colorizes parentheses, brackets etc.
+	Plugin 'luochen1990/rainbow'
 
 	" DelimitMate: Closes strings etc.
 	Plugin 'Raimondi/delimitMate'
@@ -55,14 +65,14 @@ if 1 == VimRCBundlesDevel
 	Plugin 'SirVer/ultisnips'
 	" Plugin 'honza/vim-snippets'
 
+	" Syntastic: On the fly syntax checking
+	"Plugin 'scrooloose/syntastic'
+
 	" YouCompleteMe: AutoCompletion for C-Semantic languages
 	"Plugin 'oblitum/YouCompleteMe'
 
 	" SuperTab: Brings all TAB-Key based Plugins together
 	"Plugin 'ervandew/supertab'
-
-	" Syntastic: On the fly syntax checking
-	"Plugin 'scrooloose/syntastic'
 
 	" Clang Format: Formats C++ code with specific coding style
 	"Plugin 'rhysd/vim-clang-format'
