@@ -22,8 +22,8 @@ if 1 == VimRCBundlesOptions
     nnoremap <silent> <F10> :NERDTreeTabsToggle<CR>
     inoremap <silent> <F10> <Esc>:NERDTreeTabsToggle<CR>
     vnoremap <silent> <F10> <Esc>:NERDTreeTabsToggle<CR>
-    " nnoremap <silent> <S-q> :NERDTreeSteppedOpen<CR>
-    " nnoremap <silent> <S-e> :NERDTreeSteppedClose<CR>
+    nnoremap <silent> <C-a> :NERDTreeSteppedOpen<CR>
+    nnoremap <silent> <C-d> :NERDTreeSteppedClose<CR>
 
 
     " +------------------------------------------+
@@ -135,8 +135,8 @@ if 1 == VimRCBundlesOptions
     " +------------------------------------------+
     
     "let delimitMate_quotes = "\" '""'"
-    let delimitMate_expand_space = 1                " enable expansion of spaces and new lineso
-    let delimitMate_expand_cr = 1                   " enable expansion of spaces and new lineso
+    let delimitMate_expand_space = 1                            " enable expansion of spaces and new lineso
+    let delimitMate_expand_cr = 1                               " enable expansion of spaces and new lineso
 
 
     " +------------------------------------------+
@@ -157,12 +157,57 @@ if 1 == VimRCBundlesOptions
     " | UltiSnips                                |
     " +------------------------------------------+
     
-    let g:UltiSnipsExpandTrigger = "<tab>"                " set UltiSnips trigger
-    let g:UltiSnipsJumpForwardTrigger = "<c-n>"		        " set UltiSnips forward trigger
-    let g:UltiSnipsJumpBackwardTrigger = "<c-m>"          " set UltiSnips backward trigger
-    let g:UltiSnipsListSnippets = "<c-tab>"					      " set UltiSnips list command
-    let g:UltiSnipsEditSplit = "vertical"                 " open UltiSnips Edit Window vertically
-    let g:UltiSnipsSnippetsDir = "~/.vim/misc/UltiSnips"  " defines UltiSnips snippets directory
+    let g:UltiSnipsExpandTrigger="<tab>"                      " set UltiSnips trigger
+    let g:UltiSnipsJumpForwardTrigger="<c-n>"		              " set UltiSnips forward trigger
+    let g:UltiSnipsJumpBackwardTrigger="<c-m>"                " set UltiSnips backward trigger
+    let g:UltiSnipsListSnippets="<c-tab>"					            " set UltiSnips list command
+    let g:UltiSnipsEditSplit="vertical"                       " open UltiSnips Edit Window vertically
+    let g:UltiSnipsSnippetDirectories=["misc/UltiSnips"]
+
+
+    " +------------------------------------------+
+    " | Syntastic                                |
+    " +------------------------------------------+
+    
+    " generel settings
+    " let syntastic_debug = 1                                     " enable debug mode (trace checker calls)
+    " let g:syntastic_check_on_open = 1                           " enable syntax checking when opening files
+    let g:syntastic_auto_loc_list = 1                           " error window opens and closes automatically
+    let g:syntastic_loc_list_height = 8                         " error window height
+    let g:syntastic_always_populate_loc_list = 1                " always populate errors to location list
+    " let g:syntastic_disabled_filetypes=['']                     " disable Syntastic for specific filetypes
+    
+	  " appearence
+    let g:syntastic_error_symbol = '✘'
+    let g:syntastic_warning_symbol = '☢'
+    " hi! link SyntasticErrorLine Visual
+    " hi! link SyntasticWarningLine Visual
+    " exec 'hi! SyntasticErrorSign guifg=red ctermfg=red ' . s:getbg('SyntasticErrorLine')
+    " exec 'hi! SyntasticWarningSign guifg=yellow ctermfg=yellow ' . s:getbg('SyntasticWarningLine')
+    " exec 'hi! SyntasticError ' . s:getbg('SyntasticErrorLine')
+    " exec 'hi! SyntasticWarning ' . s:getbg('SyntasticWarningLine')
+    " highlight SyntasticError ctermfg=red
+    " highlight SyntasticWarning ctermfg=yellow
+    
+    " FORTRAN language settings
+    let g:syntastic_fortran_compiler = 'gfortran'               " define FORTRAN checker
+	  " let g:syntastic_fortran_errorformat = '%f:%l: %trror: %m'   " define FORTRAN error format
+    " let g:syntastic_fortran_remove_include_errors = 1           " disable include errors
+    " let g:syntastic_c_config_file = '.syntastic_config'         " enable project specific config file
+    " let g:syntastic_fortran_include_dirs = [ 'include' ]
+   
+    " c language settings
+    " let g:syntastic_c_compiler = 'gcc'                          " define c checker
+    " let g:syntastic_c_errorformat = '%f:%l:%c: %trror: %m'      " define c error format 
+    " let g:syntastic_c_remove_include_errors = 1                 " disable include errors
+    " let g:syntastic_c_check_header = 0                          " enable header checking
+	  " let g:syntastic_c_no_default_include_dirs = 1
+    " let g:syntastic_c_config_file = '.syntastic_config'         " enable project specific config file
+    let g:syntastic_c_include_dirs = [ '/opt/intel/impi/5.0.1.035/intel64/include' ]
+    
+    " c++ language settings
+    " let ...
+    " let ...
 
 
     " +------------------------------------------+
@@ -200,54 +245,6 @@ if 1 == VimRCBundlesOptions
     " +------------------------------------------+
     
     " settings
-
-
-    " +------------------------------------------+
-    " | Syntastic                                |
-    " +------------------------------------------+
-    
-    " generel settings
-		"" let syntastic_debug = 1                             " enable debug mode (trace checker calls)
-    "" let g:syntastic_check_on_open = 1                   " enable syntax checking when opening files
-    "let g:syntastic_auto_loc_list = 1                   " error window opens and closes automatically
-    "let g:syntastic_loc_list_height = 8                 " error window height
-    "let g:syntastic_always_populate_loc_list = 1        " always populate errors to location list
-    "" let g:syntastic_disabled_filetypes=['']             " disable Syntastic for specific filetypes
-    
-    " c language settings
-    "let g:syntastic_c_compiler = 'gcc'                        " define c checker
-    "" let g:syntastic_c_errorformat = '%f:%l:%c: %trror: %m'  " define c error format 
-    "" let g:syntastic_c_remove_include_errors = 1             " disable include errors
-    "let g:syntastic_c_check_header = 0                      " enable header checking
-		"" let g:syntastic_c_no_default_include_dirs = 1
-    "" let g:syntastic_c_config_file = '.syntastic_config'       " enable project specific config file
-    
-    " include standard header files
-    "let g:syntastic_c_include_dirs = [ '/media/G/Numerik/LDS_Software/opt/openmpi/include' ]
-    
-    " c++ language settings
-    "" let ...
-    "" let ...
-    
-    " FORTRAN language settings
-    "let g:syntastic_fortran_compiler = 'gfortran'               " define FORTRAN checker
-		"" let g:syntastic_fortran_errorformat = '%f:%l: %trror: %m' " define FORTRAN error format
-    "" let g:syntastic_fortran_remove_include_errors = 1         " disable include errors
-    "" let g:syntastic_fortran_config_file = '.syntastic_gfortran_config'   " define config name
-    "" let g:syntastic_fortran_include_dirs = [ 'include' ]
-
-		" errors and warnings appearence
-    "let g:syntastic_error_symbol = '✘✘'
-    "let g:syntastic_warning_symbol = '☢☢'
-    "hi! link SyntasticErrorLine Visual
-    "hi! link SyntasticWarningLine Visual
-    "exec 'hi! SyntasticErrorSign guifg=red ctermfg=red ' . s:getbg('SyntasticErrorLine')
-    "exec 'hi! SyntasticWarningSign guifg=yellow ctermfg=yellow ' . s:getbg('SyntasticWarningLine')
-    "exec 'hi! SyntasticError ' . s:getbg('SyntasticErrorLine')
-    "exec 'hi! SyntasticWarning ' . s:getbg('SyntasticWarningLine')
-    "highlight SyntasticError ctermfg=red
-    "highlight SyntasticWarning ctermfg=yellow
-    
 
 	endif
 

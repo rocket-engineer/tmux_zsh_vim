@@ -34,9 +34,10 @@ so ~/.vim/vimrc/vim-conf.vim
 " | Plugin administration                                                                          |
 " +------------------------------------------------------------------------------------------------+
 
-filetype off                        " required for vundle
-set rtp+=~/.vim/bundle/Vundle.vim   " set the runtime path to include Vundle
-call vundle#begin()                 " initialize Vundle
+" required for vundle (add vundle in runtimepath and init it)
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -45,7 +46,7 @@ Plugin 'gmarik/Vundle.vim'
 so ~/.vim/vimrc/bundles.vim
 
 call vundle#end()
-filetype plugin on
+filetype plugin indent on
 
 
 " +------------------------------------------------------------------------------------------------+
@@ -57,12 +58,12 @@ if filereadable(glob("~/.vim/vimrc/vim.pre.conf"))
 	so ~/.vim/vimrc/vim.pre.conf
 endif
 
-if 1 == VimRCStandard
-	so ~/.vim/vimrc/standard.vim
-endif
-
 if 1 == VimRCFunctions
 	so ~/.vim/vimrc/functions.vim
+endif
+
+if 1 == VimRCStandard
+	so ~/.vim/vimrc/standard.vim
 endif
 
 if 1 == VimRCDevel

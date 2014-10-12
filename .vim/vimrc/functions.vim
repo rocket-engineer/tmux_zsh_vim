@@ -32,6 +32,37 @@
   
 
   " +--------------------------------------------+
+  " | Syntastic                                  |
+  " +--------------------------------------------+
+
+  function! s:getbg(group)
+    if has("gui_running")
+      let l:mode = 'gui'
+      let l:validation = '\w\+\|#\x\+'
+    else
+      let l:mode = 'cterm'
+      let l:validation = '\w\+'
+    endif
+    if synIDattr(synIDtrans(hlID(a:group)), 'reverse', l:mode)
+      let l:bg = synIDattr(synIDtrans(hlID(a:group)), 'fg', l:mode)
+      else
+      let l:bg = synIDattr(synIDtrans(hlID(a:group)), 'bg', l:mode)
+    endif
+    if l:bg == '-1' || l:bg !~ l:validation
+      if synIDattr(synIDtrans(hlID('SignColumn')), 'reverse', l:mode)
+        let l:bg = synIDattr(synIDtrans(hlID('SignColumn')), 'fg', l:mode)
+      else
+        let l:bg = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', l:mode)
+      endif
+    endif
+    if l:bg == '-1' || l:bg !~ l:validation
+      return ''
+    endif
+    return l:mode . 'bg=' . l:bg
+  endfunction
+
+
+  " +--------------------------------------------+
   " | Vim environment                            |
   " +--------------------------------------------+
 
@@ -86,4 +117,11 @@
   endfun
   " Increase numbers in next line to see more colors.
   command! VimColorTest call VimColorTest('vim-color-test.tmp', 12, 16)
+
+  " show syntax highlight group
+  function! SyntaxItem()
+    return synIDattr(synID(line("."),col("."),1),"name")
+  endfunction
+  " corresponding function invoke
+  command! SyntaxItem echo(SyntaxItem())
 

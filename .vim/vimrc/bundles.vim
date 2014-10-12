@@ -32,7 +32,7 @@ if 1 == VimRCBundlesStandard
   " EasyMotion: Jump to words as easy as possible
 	Plugin 'Lokaltog/vim-easymotion'
 
-  " Fugitive: 
+  " Fugitive: Git integration into vim
   "Plugin 'tpope/fugitive'
 
 	" Vimshell:
@@ -66,12 +66,12 @@ if 1 == VimRCBundlesDevel
 	" Plugin 'honza/vim-snippets'
 
 	" Syntastic: On the fly syntax checking
-	"Plugin 'scrooloose/syntastic'
+	Plugin 'scrooloose/syntastic'
 
 	" YouCompleteMe: AutoCompletion for C-Semantic languages
 	"Plugin 'oblitum/YouCompleteMe'
 
-	" SuperTab: Brings all TAB-Key based Plugins together
+	" SuperTab: Brings all TAB-Key based plugins together
 	"Plugin 'ervandew/supertab'
 
 	" Clang Format: Formats C++ code with specific coding style

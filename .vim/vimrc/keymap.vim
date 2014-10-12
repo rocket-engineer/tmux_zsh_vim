@@ -103,7 +103,7 @@ map <silent> <C-8> :tabn8<CR>
 map <silent> <C-9> :tabn9<CR>
 map <silent> <C-0> :tabn10<CR>
 
- " move tab to the left
+" move tab to the left
 nnoremap <silent> <C-Left> :tabm -1<CR>
 inoremap <silent> <C-Left> :tabm -1<CR>
 
@@ -113,31 +113,30 @@ inoremap <silent> <C-Right> :tabm +1<CR>
 
 
 " +----------------------------------------------+
-" | Tab Mappings                                 |
+" | Window Mappings                              |
 " +----------------------------------------------+
 
-" window navigation
-nnoremap <M-a> <C-W><C-H>		      " move cursor to left window
-inoremap <M-a> <Esc><C-W><C-H>		" move cursor to left window
-nnoremap <M-d> <C-W><C-L>		      " move cursor to right window
-inoremap <M-d> <Esc><C-W><C-L>		" move cursor to right window
-nnoremap <M-s> <C-W><C-J>		      " move cursor to lower window
-inoremap <M-s> <Esc><C-W><C-J>  	" move cursor to lower window
-nnoremap <M-w> <C-W><C-K>		      " move cursor to upper window
-inoremap <M-w> <Esc><C-W><C-K>		" move cursor to upper window
-nnoremap <M-x> <C-W><C-P>         " move cursor to previous windows
-inoremap <M-x> <Esc><C-W><C-P>    " move cursor to previous windows
+" move cursor to the left/right/lower/upper windows
+nnoremap <M-a> <C-W><C-H>
+inoremap <M-a> <Esc><C-W><C-H>
+nnoremap <M-d> <C-W><C-L>
+inoremap <M-d> <Esc><C-W><C-L>
+nnoremap <M-s> <C-W><C-J>
+inoremap <M-s> <Esc><C-W><C-J>
+nnoremap <M-w> <C-W><C-K>
+inoremap <M-w> <Esc><C-W><C-K>
+nnoremap <M-x> <C-W><C-P>
+inoremap <M-x> <Esc><C-W><C-P>
 
-" window rotation
-" nnoremap <M-S-h> <C-W>R	          " rotate window leftwards
-" inoremap <M-S-h> <Esc><C-W>R	    " rotate window leftwards
-" nnoremap <M-S-l> <C-W>r	          " rotate window rightwards
-" inoremap <M-S-l> <Esc><C-W>r	    " rotate window rightwards
+" toggle left/right window
+
+" swap left/right window
 nnoremap <M-S-j> <C-W>x	          " swap current window with next one
 inoremap <M-S-j> <Esc><C-W>x	    " swap current window with next one
+
+" break out current window into a new tab
 nnoremap <M-S-c> <C-W>T	          " break out current window into a new tabview
 inoremap <M-S-c> <Esc><C-W>T	    " break out current window into a new tabview
-" nnoremap <S-c> <C-W><C-o>	" close every window in the current tabview but the current one
 
 
 " +----------------------------------------------+

@@ -23,6 +23,7 @@ hi Normal		ctermfg=254		ctermbg=234		cterm=none		guifg=#f6f3e8	guibg=#242424	gui
 hi Cursor		ctermfg=none	ctermbg=241		cterm=none		guifg=NONE		guibg=#656565	gui=none
 hi Visual		ctermfg=7		ctermbg=238		cterm=none		guifg=#f6f3e8	guibg=#444444	gui=none
 " hi VisualNOS
+hi helpNote 	ctermfg=0 		ctermbg=226     cterm=none
 hi Search		ctermfg=0 		ctermbg=226     cterm=none
 hi Folded		ctermfg=103		ctermbg=238		cterm=none		guifg=#a0a8b0	guibg=#384048	gui=none
 hi Title		ctermfg=7		ctermbg=none	cterm=bold		guifg=#f6f3e8	guibg=NONE		gui=bold
@@ -40,7 +41,6 @@ hi MatchParen	ctermfg=7		ctermbg=243		cterm=bold		guifg=#f6f3e8	guibg=#857b6f	gu
 hi Pmenu		ctermfg=7		ctermbg=238						guifg=#f6f3e8	guibg=#444444
 hi PmenuSel		ctermfg=0		ctermbg=192						guifg=#000000	guibg=#cae682
 endif
-
 
 " Syntax highlighting
 hi Keyword		ctermfg=111		cterm=none		guifg=#8ac6f2	gui=none
