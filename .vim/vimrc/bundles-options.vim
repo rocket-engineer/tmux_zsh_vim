@@ -208,6 +208,7 @@ if 1 == VimRCBundlesOptions
     " c++ language settings
     " let ...
     " let ...
+    let g:syntastic_cpp_include_dirs = [ '/opt/intel/impi/5.0.1.035/intel64/include' ]
 
 
     " +------------------------------------------+
