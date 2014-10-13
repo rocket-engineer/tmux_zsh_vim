@@ -162,7 +162,8 @@ if 1 == VimRCBundlesOptions
     let g:UltiSnipsJumpBackwardTrigger="<c-m>"                " set UltiSnips backward trigger
     let g:UltiSnipsListSnippets="<c-tab>"					            " set UltiSnips list command
     let g:UltiSnipsEditSplit="vertical"                       " open UltiSnips Edit Window vertically
-    let g:UltiSnipsSnippetDirectories=["misc/UltiSnips"]
+    let g:UltiSnipsSnippetDirectories=["misc/UltiSnips"]      " set UltiSnips main directory
+    let g:UltiSnipsSnippetsDir = "~/.vim/misc/UltiSnips"      " set UltiSnips directory for new snippets
 
 
     " +------------------------------------------+
