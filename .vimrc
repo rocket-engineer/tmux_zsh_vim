@@ -23,10 +23,10 @@
 " | General                                                                                        |
 " +------------------------------------------------------------------------------------------------+
 
-" be iMproved, required
+" be improved, required
 set nocompatible
 
-" load VimRC config file
+" load vimrc config file
 so ~/.vim/vimrc/vim-conf.vim
 
 
@@ -34,7 +34,7 @@ so ~/.vim/vimrc/vim-conf.vim
 " | Plugin administration                                                                          |
 " +------------------------------------------------------------------------------------------------+
 
-" required for vundle (add vundle in runtimepath and init it)
+" required for vundle (add vundle in runtime path and initialize it)
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -50,7 +50,7 @@ filetype plugin indent on
 
 
 " +------------------------------------------------------------------------------------------------+
-" | Load splitted functionality                                                                    |
+" | Load chosen functionality                                                                      |
 " +------------------------------------------------------------------------------------------------+
 
 " load user defined pre vim config

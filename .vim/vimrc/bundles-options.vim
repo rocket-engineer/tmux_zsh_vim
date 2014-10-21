@@ -1,5 +1,5 @@
 
-" +------------------------------------------------------------------------------------------------+            
+" +------------------------------------------------------------------------------------------------+
 " | Plugin specific settings                                                                       |
 " +------------------------------------------------------------------------------------------------+
 
@@ -13,8 +13,9 @@ if 1 == VimRCBundlesOptions
     
    	" settings
     let g:NERDTreeWinSize = 40 													        " set the width of the tree
-    let g:NERDTreeChDirMode = 2 												        " set current dir
+    let g:NERDTreeChDirMode = 2 												        " set current directory
     let NERDTreeShowBookmarks = 1 											        " always show bookmarks
+    " let NERDTreeStatusline="huhu"
     let NERDTreeIgnore = ['.o$[[file]]'] 								        " ignore object files
     let g:nerdtree_tabs_open_on_console_startup = 1    	        " open NERDTree
     
@@ -22,8 +23,6 @@ if 1 == VimRCBundlesOptions
     nnoremap <silent> <F10> :NERDTreeTabsToggle<CR>
     inoremap <silent> <F10> <Esc>:NERDTreeTabsToggle<CR>
     vnoremap <silent> <F10> <Esc>:NERDTreeTabsToggle<CR>
-    nnoremap <silent> <C-a> :NERDTreeSteppedOpen<CR>
-    nnoremap <silent> <C-d> :NERDTreeSteppedClose<CR>
 
 
     " +------------------------------------------+
@@ -31,7 +30,7 @@ if 1 == VimRCBundlesOptions
     " +------------------------------------------+
    
     " settings
-    let g:airline#extensions#tabline#enabled = 1                " enable enhanced tabline
+    let g:airline#extensions#tabline#enabled = 1                " enable enhanced tab line
     let g:airline#extensions#tabline#show_buffers = 0		        "	enable buffers with a single tab
     let g:airline#extensions#tabline#tab_min_count = 0	        "	set tab_min_count to zero
     let g:airline#extensions#tabline#tab_nr_type = 1		        "	type how to calculate number
@@ -47,7 +46,7 @@ if 1 == VimRCBundlesOptions
     " +------------------------------------------+
    
     " settings
-    let g:indent_guides_enable_on_vim_startup = 1 			        " enable Indent Guides at vim startup
+    let g:indent_guides_enable_on_vim_startup = 0 			        " enable Indent Guides at vim startup
     let g:indent_guides_start_level = 2 								        " start indent guides at 2nd level
     let g:indent_guides_guide_size = 1 								          " use small indent guides
     let g:indent_guides_space_guides = 1 								        " don't care about spaces
@@ -62,7 +61,6 @@ if 1 == VimRCBundlesOptions
     " +------------------------------------------+
    
     " settings
-
 
 	endif
 
@@ -79,8 +77,8 @@ if 1 == VimRCBundlesOptions
     
     " settings
     let g:tagbar_sort = 0   "
-    let g:tagbar_iconchars = ['▸', '▾']                         " define tagbar iconchard
-    autocmd FileType fortran,c,cpp,cuda nested :TagbarOpen      " open tagbar for these filetypes automatically
+    let g:tagbar_iconchars = ['▸', '▾']                         " define Tagbar icon characters
+    autocmd FileType fortran,c,cpp,cuda,vim nested :TagbarOpen  " open Tagbar for these file types automatically
     
     " define what to show
     
@@ -88,9 +86,9 @@ if 1 == VimRCBundlesOptions
     hi TagbarHelp ctermfg=113
    
     " keymaps
-    nnoremap <silent> <F11> :TagbarToggle<CR>
-    inoremap <silent> <F11> <Esc>:TagbarToggle<CR>
-    vnoremap <silent> <F11> <Esc>:TagbarToggle<CR>
+    nnoremap <F11>      :call NavOpenCloseTagbar()<CR>
+    inoremap <F11> <Esc>:call NavOpenCloseTagbar()<CR>
+    vnoremap <F11> <Esc>:call NavOpenCloseTagbar()<CR>
   
 
     " +------------------------------------------+
@@ -99,7 +97,6 @@ if 1 == VimRCBundlesOptions
    
     " settings
     let g:rainbow_active = 0
-    " au FileType fortran,c,cpp,cuda call rainbow#load()          " enable rainbow for certain filetypes
 
     " define colors and what characters to color
     let g:rainbow_conf = {
@@ -108,19 +105,19 @@ if 1 == VimRCBundlesOptions
     \ 'operators': '_,_',
     \ 'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
     \ 'separately': {
-    \     '*': {},
-    \     'lisp': {
-    \         'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-    \         'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan', 'darkred', 'darkgreen'],
+    \   '*': {},
+    \   'lisp': {
+    \     'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+    \     'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan', 'darkred', 'darkgreen'],
+    \   },
+    \   'vim': {
+    \     'parentheses': [['fu\w* \s*.*)','endfu\w*'], ['for','endfor'], ['while', 'endwhile'], ['if','_elseif\|else_','endif'], ['(',')'], ['\[','\]'], ['{','}']],
     \     },
-    \     'vim': {
-    \         'parentheses': [['fu\w* \s*.*)','endfu\w*'], ['for','endfor'], ['while', 'endwhile'], ['if','_elseif\|else_','endif'], ['(',')'], ['\[','\]'], ['{','}']],
-    \     },
-    \     'tex': {
-    \         'parentheses': [['(',')'], ['\[','\]'], ['\\begin{.*}','\\end{.*}']],
-    \     },
-    \     'css': 0,
-    \     'stylus': 0,
+    \   'tex': {
+    \     'parentheses': [['(',')'], ['\[','\]'], ['\\begin{.*}','\\end{.*}']],
+    \   },
+    \   'css': 0,
+    \   'stylus': 0,
     \ }
     \} 
    
@@ -135,8 +132,8 @@ if 1 == VimRCBundlesOptions
     " +------------------------------------------+
     
     "let delimitMate_quotes = "\" '""'"
-    let delimitMate_expand_space = 1                            " enable expansion of spaces and new lineso
-    let delimitMate_expand_cr = 1                               " enable expansion of spaces and new lineso
+    let delimitMate_expand_space = 1                            " enable expansion of spaces and new lines
+    let delimitMate_expand_cr = 1                               " enable expansion of spaces and new lines
 
 
     " +------------------------------------------+
@@ -170,25 +167,51 @@ if 1 == VimRCBundlesOptions
     " | Syntastic                                |
     " +------------------------------------------+
     
-    " generel settings
+    " general settings
     " let syntastic_debug = 1                                     " enable debug mode (trace checker calls)
     " let g:syntastic_check_on_open = 1                           " enable syntax checking when opening files
     let g:syntastic_auto_loc_list = 1                           " error window opens and closes automatically
     let g:syntastic_loc_list_height = 8                         " error window height
     let g:syntastic_always_populate_loc_list = 1                " always populate errors to location list
-    " let g:syntastic_disabled_filetypes=['']                     " disable Syntastic for specific filetypes
+    " let g:syntastic_disabled_filetypes=['']                     " disable Syntastic for specific file types
     
-	  " appearence
+	  " appearance
+    function! s:getbg(group)
+      if has("gui_running")
+        let l:mode = 'gui'
+        let l:validation = '\w\+\|#\x\+'
+      else
+        let l:mode = 'cterm'
+        let l:validation = '\w\+'
+      endif
+      if synIDattr(synIDtrans(hlID(a:group)), 'reverse', l:mode)
+        let l:bg = synIDattr(synIDtrans(hlID(a:group)), 'fg', l:mode)
+      else
+        let l:bg = synIDattr(synIDtrans(hlID(a:group)), 'bg', l:mode)
+      endif
+      if l:bg == '-1' || l:bg !~ l:validation
+        if synIDattr(synIDtrans(hlID('SignColumn')), 'reverse', l:mode)
+          let l:bg = synIDattr(synIDtrans(hlID('SignColumn')), 'fg', l:mode)
+        else
+          let l:bg = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', l:mode)
+        endif
+      endif
+      if l:bg == '-1' || l:bg !~ l:validation
+    	  return ''
+      endif
+      return l:mode . 'bg=' . l:bg
+    endfunction
+
     let g:syntastic_error_symbol = '✘'
     let g:syntastic_warning_symbol = '☢'
-    " hi! link SyntasticErrorLine Visual
-    " hi! link SyntasticWarningLine Visual
-    " exec 'hi! SyntasticErrorSign guifg=red ctermfg=red ' . s:getbg('SyntasticErrorLine')
-    " exec 'hi! SyntasticWarningSign guifg=yellow ctermfg=yellow ' . s:getbg('SyntasticWarningLine')
-    " exec 'hi! SyntasticError ' . s:getbg('SyntasticErrorLine')
-    " exec 'hi! SyntasticWarning ' . s:getbg('SyntasticWarningLine')
-    " highlight SyntasticError ctermfg=red
-    " highlight SyntasticWarning ctermfg=yellow
+    hi! link SyntasticErrorLine Visual
+    hi! link SyntasticWarningLine Visual
+    exec 'hi! SyntasticErrorSign guifg=red ctermfg=red ' . s:getbg('SyntasticErrorLine')
+    exec 'hi! SyntasticWarningSign guifg=yellow ctermfg=yellow ' . s:getbg('SyntasticWarningLine')
+    exec 'hi! SyntasticError ' . s:getbg('SyntasticErrorLine')
+    exec 'hi! SyntasticWarning ' . s:getbg('SyntasticWarningLine')
+    highlight SyntasticError ctermfg=red
+    highlight SyntasticWarning ctermfg=yellow
     
     " FORTRAN language settings
     let g:syntastic_fortran_compiler = 'gfortran'               " define FORTRAN checker
@@ -197,16 +220,16 @@ if 1 == VimRCBundlesOptions
     " let g:syntastic_c_config_file = '.syntastic_config'         " enable project specific config file
     " let g:syntastic_fortran_include_dirs = [ 'include' ]
    
-    " c language settings
-    " let g:syntastic_c_compiler = 'gcc'                          " define c checker
-    " let g:syntastic_c_errorformat = '%f:%l:%c: %trror: %m'      " define c error format 
+    " C language settings
+    " let g:syntastic_c_compiler = 'gcc'                          " define C checker
+    " let g:syntastic_c_errorformat = '%f:%l:%c: %trror: %m'      " define C error format 
     " let g:syntastic_c_remove_include_errors = 1                 " disable include errors
     " let g:syntastic_c_check_header = 0                          " enable header checking
 	  " let g:syntastic_c_no_default_include_dirs = 1
     " let g:syntastic_c_config_file = '.syntastic_config'         " enable project specific config file
     let g:syntastic_c_include_dirs = [ '/opt/intel/impi/5.0.1.035/intel64/include' ]
     
-    " c++ language settings
+    " C++ language settings
     " let ...
     " let ...
     let g:syntastic_cpp_include_dirs = [ '/opt/intel/impi/5.0.1.035/intel64/include' ]

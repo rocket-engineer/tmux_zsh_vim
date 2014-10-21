@@ -43,21 +43,17 @@ hi PmenuSel		ctermfg=0		ctermbg=192						guifg=#000000	guibg=#cae682
 endif
 
 " Syntax highlighting
-hi Keyword		ctermfg=111		cterm=none		guifg=#8ac6f2	gui=none
-hi Statement	ctermfg=111		cterm=none		guifg=#8ac6f2	gui=none
-hi Constant		ctermfg=173		cterm=none		guifg=#e5786d	gui=none
-hi Number		ctermfg=173		cterm=none		guifg=#e5786d	gui=none
-hi PreProc		ctermfg=173		cterm=none		guifg=#e5786d	gui=none
-hi Function		ctermfg=192		cterm=none		guifg=#cae682	gui=none
-hi Identifier	ctermfg=192		cterm=none		guifg=#cae682	gui=none
-hi Type			ctermfg=192		cterm=none		guifg=#cae682	gui=none
-hi Special		ctermfg=194		cterm=none		guifg=#e7f6da	gui=none
-hi String		ctermfg=113		cterm=none		guifg=#95e454	gui=italic
-hi Comment		ctermfg=246		cterm=none		guifg=#99968b	gui=italic
-hi Todo			ctermfg=245		cterm=none		guifg=#8f8f8f	gui=italic
-hi MPI 			ctermfg=40 		cterm=bold
-hi OpenMP 	 	ctermfg=27 		cterm=bold 			
-hi CUDA 		ctermfg=201 	cterm=bold
+hi Keyword		ctermfg=111						cterm=none		guifg=#8ac6f2	gui=none
+hi Statement	ctermfg=111						cterm=none		guifg=#8ac6f2	gui=none
+hi Constant		ctermfg=173						cterm=none		guifg=#e5786d	gui=none
+hi Number		ctermfg=173						cterm=none		guifg=#e5786d	gui=none
+hi PreProc		ctermfg=173						cterm=none		guifg=#e5786d	gui=none
+hi Function		ctermfg=192						cterm=none		guifg=#cae682	gui=none
+hi Identifier	ctermfg=192						cterm=none		guifg=#cae682	gui=none
+hi Type			ctermfg=192						cterm=none		guifg=#cae682	gui=none
+hi Special		ctermfg=194						cterm=none		guifg=#e7f6da	gui=none
+hi String		ctermfg=113						cterm=none		guifg=#95e454	gui=italic
+hi Comment		ctermfg=246						cterm=none		guifg=#99968b	gui=italic
 
 
 " Links

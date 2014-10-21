@@ -11,7 +11,7 @@
 " make vim aware of screen sequences
 if &term =~ '^screen' && exists('$TMUX')
 
-    " tmux will send xterm-style keys when xterm-keys is on
+    " TMux will send xterm-style keys when xterm-keys is on
     set ttymouse=xterm2
 
     execute "set <xUp>=\e[1;*A"
@@ -43,20 +43,20 @@ endif
 " | General Mappings                             |
 " +----------------------------------------------+
 
-" CTRL-S for saving, also in Insert and Visuell mode
-noremap <C-S> :update<CR>
-vnoremap <C-S> <C-C>:update<CR><ESC>
-inoremap <C-S> <C-O>:update<CR><ESC>
+" Ctrl-s for saving
+nnoremap <C-s> :call FileSave()<CR>
+vnoremap <C-s> <Esc>:call FileSave()<CR>
+inoremap <C-s> <Esc>:call FileSave()<CR>
 
-" CTRL-X for saving and closing, also in Insert and Visuell mode
-noremap <C-X> :x<CR>
-vnoremap <C-X> <Esc>:x<CR>
-inoremap <C-X> <Esc>:x<CR>
+" Ctrl-q for closing
+nnoremap <C-q> :call FileClose()<CR>
+vnoremap <C-q> <Esc>:call FileClose()<CR>
+inoremap <C-q> <Esc>:call FileClose()<CR>
 
-" CTRL-W for closing, also in Insert and Visuell mode (disabled due to incompatibilies with terminal)
-noremap <C-Q> :q<CR>
-vnoremap <C-Q> <Esc>:q<CR>
-inoremap <C-Q> <Esc>:q<CR>
+" Ctrl-x for saving and closing
+nnoremap <C-x> :call FileSaveClose()<CR>
+vnoremap <C-x> <Esc>:call FileSaveClose()<CR>
+inoremap <C-x> <Esc>:call FileSaveClose()<CR>
 
 " open help in a vertical split with :Help or :H
 command! -nargs=* -complete=help Help vertical belowright help <args>
@@ -68,7 +68,8 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-" set pastetoggle keymap
+" toggle paste mode
+" TODO: better routine !!!
 set pastetoggle=<F8>
 
 
@@ -81,15 +82,19 @@ nnoremap <silent> <C-C> :tabnew<CR>
 inoremap <silent> <C-C> <Esc>:tabnew<CR>
 
 " switch to next tab
-nnoremap <silent> <C-L> :tabnext<CR>
-inoremap <silent> <C-L> <Esc>:tabnext<CR>
+nnoremap <C-l> :call      NavSwitchTabRight()<CR>
+vnoremap <C-l> <Esc>:call NavSwitchTabRight()<CR>
+inoremap <C-l> <Esc>:call NavSwitchTabRight()<CR>
 
 " switch to previous tab
-nnoremap <silent> <C-H> :tabprevious<CR>
-inoremap <silent> <C-H> <Esc>:tabprevious<CR>
+nnoremap <C-h> :call      NavSwitchTabLeft()<CR>
+vnoremap <C-h> <Esc>:call NavSwitchTabLeft()<CR>
+inoremap <C-h> <Esc>:call NavSwitchTabLeft()<CR>
 
 " toggle with last tab
-
+nnoremap <C-j> :call      NavToggleLastTab()<CR>
+vnoremap <C-j> <Esc>:call NavToggleLastTab()<CR>
+inoremap <C-j> <Esc>:call NavToggleLastTab()<CR>
 
 " switch to different tab
 map <silent> <C-1> 1gt
@@ -116,23 +121,40 @@ inoremap <silent> <C-Right> :tabm +1<CR>
 " | Window Mappings                              |
 " +----------------------------------------------+
 
-" move cursor to the left/right/lower/upper windows
-nnoremap <M-a> <C-W><C-H>
-inoremap <M-a> <Esc><C-W><C-H>
-nnoremap <M-d> <C-W><C-L>
-inoremap <M-d> <Esc><C-W><C-L>
-nnoremap <M-s> <C-W><C-J>
-inoremap <M-s> <Esc><C-W><C-J>
-nnoremap <M-w> <C-W><C-K>
-inoremap <M-w> <Esc><C-W><C-K>
-nnoremap <M-x> <C-W><C-P>
-inoremap <M-x> <Esc><C-W><C-P>
+" TODO: open new right main window
 
-" toggle left/right window
+" move cursor to the left/right/lower/upper windows
+nnoremap <M-a>      :call NavSwitchWinLeft()<CR>
+inoremap <M-a> <Esc>:call NavSwitchWinLeft()<CR>
+vnoremap <M-a> <Esc>:call NavSwitchWinLeft()<CR>
+nnoremap <M-d>      :call NavSwitchWinRight()<CR>
+inoremap <M-d> <Esc>:call NavSwitchWinRight()<CR>
+vnoremap <M-d> <Esc>:call NavSwitchWinRight()<CR>
+nnoremap <M-s>      :call NavSwitchWinDown()<CR>
+inoremap <M-s> <Esc>:call NavSwitchWinDown()<CR>
+vnoremap <M-s> <Esc>:call NavSwitchWinDown()<CR>
+nnoremap <M-w>      :call NavSwitchWinUp()<CR>
+inoremap <M-w> <Esc>:call NavSwitchWinUp()<CR>
+vnoremap <M-w> <Esc>:call NavSwitchWinUp()<CR>
+
+" toggle left/right main window
+nnoremap <C-k>      :call NavToggleMainwin()<CR>
+inoremap <C-k> <Esc>:call NavToggleMainwin()<CR>
+vnoremap <C-k> <Esc>:call NavToggleMainwin()<CR>
+
+" toggle NERDTree window
+nnoremap <C-a>      :call NavToggleNERDTree()<CR>
+inoremap <C-a> <Esc>:call NavToggleNERDTree()<CR>
+vnoremap <C-a> <Esc>:call NavToggleNERDTree()<CR>
+
+" toggle Tagbar window
+nnoremap <C-w>      :call NavToggleTagbar()<CR>
+inoremap <C-w> <Esc>:call NavToggleTagbar()<CR>
+vnoremap <C-w> <Esc>:call NavToggleTagbar()<CR>
 
 " swap left/right window
-nnoremap <M-S-j> <C-W>x	          " swap current window with next one
-inoremap <M-S-j> <Esc><C-W>x	    " swap current window with next one
+" nnoremap <M-S-j> <C-W>x	          " swap current window with next one
+" inoremap <M-S-j> <Esc><C-W>x	    " swap current window with next one
 
 " break out current window into a new tab
 nnoremap <M-S-c> <C-W>T	          " break out current window into a new tabview

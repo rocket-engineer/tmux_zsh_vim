@@ -20,23 +20,23 @@ set encoding=utf-8                        " set coding set
 set history=1000                          " keep 100 lines of history
 let mapleader=","                         " define map leader key
 
-" --> status line settings (disable when airline is enabled)
+" status line settings (disable when airline is enabled)
 set laststatus=2 													" enable status line
-set statusline=%<%f\ 											" Filename
-set statusline+=%w%h%m%r 									" Options
-"set statusline+=%{fugitive#statusline()} " Git Hotness
-set statusline+=\ [%{&ff}/%Y] 						" Filetype
-set statusline+=\ [%{getcwd()}] 					" Current dir
-set statusline+=%=%-14.(%l,%c%V%)\ %p%% 	" Right aligned file nav info
+set statusline=%<%f\ 											" filename
+set statusline+=%w%h%m%r 									" options
+"set statusline+=%{fugitive#statusline()} " git Hotness
+set statusline+=\ [%{&ff}/%Y] 						" file type
+set statusline+=\ [%{getcwd()}] 					" current directory
+set statusline+=%=%-14.(%l,%c%V%)\ %p%% 	" right aligned file type info
 
-" --> file directories
+" file directories
 set noswapfile                            " No swap file
 set backup                                " make backup files
-set backupdir=~/.vim/backup/              " put backup files in backup dir
-set directory=~/.vim/tmp/                 " put swap files in temp dir
-set viewdir=~/.vim/views/                 " put view files in views dir
+set backupdir=~/.vim/backup/              " put backup files in backup directory
+set directory=~/.vim/tmp/                 " put swap files in temp directory
+set viewdir=~/.vim/views/                 " put view files in views directory
 
-" --> window settings                     
+" window settings                     
 set splitbelow                            " add new window to the bottom
 set splitright                            " add new window to the right
 
@@ -45,6 +45,18 @@ set splitright                            " add new window to the right
 "set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) 	" A ruler on steroids
 "set showcmd   																			" show command line
 
+" initialize variables
+let g:develmode=0                         " disable development mode
+let g:lastmainwin=1                       " initialize last main window variable
+let g:lastwin=1                           " initialize last window variable
+let g:lasttab=1                           " initialize last tab variable
+let g:NERDTreeOn=0
+let g:TagbarOn=0
+let g:winright=2
+let g:twomainwins=1                       " two main windows indicator (1=one | 2=two main windows)
+let g:tabcounter=1
+
+
 
 " +----------------------------------------------+
 " | Appearance Settings                          |
@@ -52,15 +64,33 @@ set splitright                            " add new window to the right
 
 syntax on                       " enable syntax
 set t_Co=256                    " set number of colors
-colorscheme wombat256           " define the colorscheme
 set number                      " enable row numbers
 set cursorline                  " show cursor line
-set wildmenu                    " enable wildmenu
-set tabstop=2                   " set number of spaces for tabstop
+set wildmenu                    " enable wild menu
+set tabstop=2                   " set number of spaces for tab stop
 set shiftwidth=2                " 
 set expandtab                   " convert tabs to spaces
 set autoindent                  " auto indent after new line
-"set cindent                     " enable indent for c code
+"set cindent                     " enable indent for C code
+
+" additional colors
+if !exists("autocmd_colorscheme_loaded")
+  let autocmd_colorscheme_loaded = 1
+  " TODO
+  autocmd ColorScheme * highlight Todo	  ctermfg=232	 ctermbg=220	cterm=bold
+  autocmd ColorScheme * highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+  " parallel standards
+  autocmd ColorScheme * highlight MPI 		ctermfg=40 								cterm=bold
+  autocmd ColorScheme * highlight OpenMP 	ctermfg=27 								cterm=bold 			
+  autocmd ColorScheme * highlight CUDA 		ctermfg=201               cterm=bold
+endif
+
+" load color scheme
+colorscheme wombat256
+
+" add new keywords
+autocmd Syntax * call matchadd('Todo', 'TODO:')
+match OverLength /\%111v.\+/
 
 " --> UI settings
 "" set background=dark 						" set dark color scheme
@@ -68,6 +98,7 @@ set autoindent                  " auto indent after new line
 
 " --> indent rules
 "":nmap <tab> ==									" enable emacs-like indenting 
+
 
 
 " +----------------------------------------------+
@@ -101,4 +132,15 @@ set autoindent                  " auto indent after new line
 " save and re-open folding
 ""au BufWinLeave * mkview
 ""au BufWinEnter * silent loadview
+
+
+" +----------------------------------------------+
+" | Spell Checking                               |
+" +----------------------------------------------+
+
+set spell                                                       " enable spell checking
+
+" set keymaps
+set spelllang=en_us
+set spellfile=$HOME/Misc/Seafile/Important_data/Misc/Spell/en.utf-8.add
 
