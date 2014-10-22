@@ -24,24 +24,28 @@ if &term =~ '^screen' && exists('$TMUX')
     execute "set <Delete>=\e[3;*~"
     execute "set <PageUp>=\e[5;*~"
     execute "set <PageDown>=\e[6;*~"
-"     execute "set <xF1>=\e[1;*P"
-"     execute "set <xF2>=\e[1;*Q"
-"     execute "set <xF3>=\e[1;*R"
-"     execute "set <xF4>=\e[1;*S"
-"     execute "set <F5>=\e[15;*~"
-"     execute "set <F6>=\e[17;*~"
-"     execute "set <F7>=\e[18;*~"
-"     execute "set <F8>=\e[19;*~"
-"     execute "set <F9>=\e[20;*~"
-"     execute "set <F10>=\e[21;*~"
-"     execute "set <F11>=\e[23;*~"
-"     execute "set <F12>=\e[24;*~"
+    execute "set <xF1>=\e[1;*P"
+    execute "set <xF2>=\e[1;*Q"
+    execute "set <xF3>=\e[1;*R"
+    execute "set <xF4>=\e[1;*S"
+    execute "set <F5>=\e[15;*~"
+    execute "set <F6>=\e[17;*~"
+    execute "set <F7>=\e[18;*~"
+    execute "set <F8>=\e[19;*~"
+    execute "set <F9>=\e[20;*~"
+    execute "set <F10>=\e[21;*~"
+    execute "set <F11>=\e[23;*~"
+    execute "set <F12>=\e[24;*~"
 endif
 
 
 " +----------------------------------------------+
 " | General Mappings                             |
 " +----------------------------------------------+
+
+" Ctrl-c for switching in Normal Mode
+inoremap <silent> <C-c> <Esc>:echo "Switched in Normal Mode!"<CR>
+vnoremap <silent> <C-c> <Esc>:echo "Switched in Normal Mode!"<CR>
 
 " Ctrl-s for saving
 nnoremap <C-s> :call FileSave()<CR>
@@ -78,8 +82,9 @@ set pastetoggle=<F8>
 " +----------------------------------------------+
 
 " open new tab
-nnoremap <silent> <C-C> :tabnew<CR>
-inoremap <silent> <C-C> <Esc>:tabnew<CR>
+nnoremap <leader>d :tabnew<CR>
+inoremap <leader>d :tabnew<CR> 
+vnoremap <leader>d :tabnew<CR> 
 
 " switch to next tab
 nnoremap <C-l> :call      NavSwitchTabRight()<CR>
@@ -97,16 +102,16 @@ vnoremap <C-j> <Esc>:call NavToggleLastTab()<CR>
 inoremap <C-j> <Esc>:call NavToggleLastTab()<CR>
 
 " switch to different tab
-map <silent> <C-1> 1gt
-map <silent> <C-2> :tabn2<CR>
-map <silent> <C-3> :tabn3<CR>
-map <silent> <C-4> :tabn4<CR>
-map <silent> <C-5> :tabn5<CR>
-map <silent> <C-6> :tabn6<CR>
-map <silent> <C-7> :tabn7<CR>
-map <silent> <C-8> :tabn8<CR>
-map <silent> <C-9> :tabn9<CR>
-map <silent> <C-0> :tabn10<CR>
+map <silent> <leader>1 :call NavSwitchTabDirect(1)<CR>
+map <silent> <leader>2 :call NavSwitchTabDirect(2)<CR>
+map <silent> <leader>3 :call NavSwitchTabDirect(3)<CR>
+map <silent> <leader>4 :call NavSwitchTabDirect(4)<CR>
+map <silent> <leader>5 :call NavSwitchTabDirect(5)<CR>
+map <silent> <leader>6 :call NavSwitchTabDirect(6)<CR>
+map <silent> <leader>7 :call NavSwitchTabDirect(7)<CR>
+map <silent> <leader>8 :call NavSwitchTabDirect(8)<CR>
+map <silent> <leader>9 :call NavSwitchTabDirect(9)<CR>
+map <silent> <leader>0 :call NavSwitchTabDirect(0)<CR>
 
 " move tab to the left
 nnoremap <silent> <C-Left> :tabm -1<CR>
@@ -121,7 +126,10 @@ inoremap <silent> <C-Right> :tabm +1<CR>
 " | Window Mappings                              |
 " +----------------------------------------------+
 
-" TODO: open new right main window
+" open new main window
+nnoremap <leader>a      :call NavNewMainWin()<CR>
+inoremap <leader>a <Esc>:call NavNewMainWin()<CR>
+vnoremap <leader>a <Esc>:call NavNewMainWin()<CR>
 
 " move cursor to the left/right/lower/upper windows
 nnoremap <M-a>      :call NavSwitchWinLeft()<CR>

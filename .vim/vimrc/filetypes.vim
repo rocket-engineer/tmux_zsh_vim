@@ -1,15 +1,15 @@
 
 " +------------------------------------------------------------------------------------------------+
-" | Additional Filetypes Definitions                                                               |
+" | Additional File type Definitions                                                               |
 " +------------------------------------------------------------------------------------------------+
 
-" set CUDA filetype
+" set CUDA file type
 au BufNewFile,BufRead *.cu set ft=cuda
 au BufNewFile,BufRead *.cuh set ft=cuda
 
-" set gnuplot filetype
+" set gnuplot file type
 au BufNewFile,BufRead *.gp set ft=gnuplot
 
-" set CHEMKIN filetype
+" set CHEMKIN file type
 au BufNewFile,BufRead *.ck set ft=chemkin
 

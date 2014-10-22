@@ -28,6 +28,9 @@
       " move cursor to main window
       if (g:NERDTreeOn==1) && (winnr()==1)
         exe 2 . "wincmd w"
+        if g:twomainwins==2
+          let g:lastmainwin=2
+        endif
       endif
     endif
     " TODO: after tab was closed check for last(main)windows
@@ -205,6 +208,17 @@
     endif
   endfunction
 
+  " switch to tab directly
+  function! NavSwitchTabDirect(tabnr)
+    if a:tabnr!=tabpagenr()
+      let g:lasttab=tabpagenr()
+      exec("tabnext " . a:tabnr)
+      echo "Switch to tab"a:tabnr"!"
+    else
+      echo "Already in tab"a:tabnr"!"
+    endif
+  endfunction
+
   " open/close Tagbar on/off
   function! NavOpenCloseTagbar()
     if bufwinnr("__Tagbar__")<0
@@ -302,47 +316,90 @@
     endif
   endfunction
   
+  " check if file is available
+  function! NavCheckBufAvail(checkbuf)
+    let out=0
+    let c=1
+    while c<=bufnr("$")
+      if a:checkbuf==bufname(c)
+        let out=1
+        break
+      endif
+      let c+=1
+    endwhile
+    return out
+  endfunction
+
+  " new main window
+  function! NavNewMainWin()
+    if g:twomainwins==1
+      vnew 
+      let g:twomainwins=2
+    elseif g:twomainwins==2
+      echo "No more main window slots available!"
+    else
+      echo "Error 01: NavNewMainWin()"
+    endif
+  endfunction
+
   " new tab from NERDTree
   function! NavNewTab(filenode)
-    exec("tabnew " . a:filenode.displayString())
-    let g:tabcounter=g:tabcounter+1
-    call NavScanEnv()
+    if NavCheckBufAvail(a:filenode.displayString())==1
+      echo "This file has already been opened!"
+    else
+      exec(tabpagenr("$") . "tabnew " . fnamemodify(a:filenode.path.str(), ':.'))
+      let g:tabcounter=g:tabcounter+1
+      call NavScanEnv()
+    endif
   endfunction
 
   " new tab from NERDTree (silently)
   function! NavNewTabSilent(filenode)
-    exec("tabnew " . a:filenode.displayString())
-    exec("tabnext " . g:lasttab)
-    exec(1 . "wincmd w")
-    let g:tabcounter=g:tabcounter+1
-    call NavScanEnv()
+    if NavCheckBufAvail(a:filenode.displayString())==1
+      echo "This file has already been opened!"
+    else
+      let l:tabbefore=tabpagenr()
+      exec(tabpagenr("$") . "tabnew " . fnamemodify(a:filenode.path.str(), ':.'))
+      exec("tabnext " . l:tabbefore)
+      exec(1 . "wincmd w")
+      let g:tabcounter=g:tabcounter+1
+      call NavScanEnv()
+    endif
   endfunction
   
-  " new right window from NERDTree
+  " new main window from NERDTree
   function! NavNewSplitWin(filenode)
-    if g:twomainwins==1
-      exec(2 . "wincmd w")
-      exec("rightbelow vsplit " . a:filenode.displayString())
-    elseif g:twomainwins==2
-      exec("tabnew " . a:filenode.displayString())
+    if NavCheckBufAvail(a:filenode.displayString())==1
+      echo "This file has already been opened!"
     else
-      echo "01 Error: Problem in NavNewSplitWinSilent !!!"
+      if g:twomainwins==1
+        exec(2 . "wincmd w")
+        exec("rightbelow vsplit " . fnamemodify(a:filenode.path.str(), ':.'))
+      elseif g:twomainwins==2
+        echo "No more main window slots available!"
+      else
+        echo "01 Error: Problem in NavNewSplitWinSilent !!!"
+      endif
+      call NavScanEnv()
     endif
-    call NavScanEnv()
   endfunction
 
-  " new right window from NERDTree (silently)
+  " new main window from NERDTree (silently)
   function! NavNewSplitWinSilent(filenode)
-    if g:twomainwins==1
-      exec(2 . "wincmd w")
-      exec("rightbelow vsplit " . a:filenode.displayString())
-      exec(1 . "wincmd w")
-    elseif g:twomainwins==2
-      exec("tabnew " . a:filenode.displayString())
+    if NavCheckBufAvail(a:filenode.displayString())==1
+      echo "This file has already been opened!"
     else
-      echo "01 Error: Problem in NavNewSplitWinSilent !!!"
+      if g:twomainwins==1
+        exec(2 . "wincmd w")
+        exec("rightbelow vsplit " . fnamemodify(a:filenode.path.str(), ':.'))
+        exec(1 . "wincmd w")
+      elseif g:twomainwins==2
+        echo "No more main window slots available!"
+      else
+        echo "01 Error: Problem in NavNewSplitWinSilent !!!"
+      endif
+      call NavScanEnv()
     endif
-    call NavScanEnv()
   endfunction
 
 

@@ -55,6 +55,8 @@ let g:TagbarOn=0
 let g:winright=2
 let g:twomainwins=1                       " two main windows indicator (1=one | 2=two main windows)
 let g:tabcounter=1
+let g:locationlistleft=0                  " there is no 
+let g:locationlistright=0
 
 
 
