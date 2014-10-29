@@ -49,6 +49,14 @@
     call FileClose()
   endf
 
+  " vim script <-> Python wrapper function
+  " function! VimPythonWrapper(vimfunc)
+    " redir @output
+    " a:vimfunc
+    " redir END
+    " return output
+  " endfunction
+
   " set development mode
   function! NavSetDevelMode()
     let g:develmode=1                                       " enable development mode
@@ -79,11 +87,6 @@
     return g:lastwin
   endfunction
 
-  " After new buffer has created
-  function! NavDetectNewTabWin()
-    call NavScanEnv()
-  endfunction
-
   " After a window has been closed
   function! NavDetectClosedWin()
     let l:counter = winnr() - g:NERDTreeOn
@@ -98,29 +101,20 @@
   endfunction
 
   function! NavScanEnv()
-    " check for NERDTree
-    if (exists(":NERDTree"))
-      let g:NERDTreeOn=1
-    endif
-    " check for Tagbar and two main windows
-    let g:twomainwins=1
-    if bufwinnr("__Tagbar__")<0
-      let g:TagbarOn=0
-      " TODO: check whether there is one main window or two
-      if g:develmode==1
-        TagbarOpen
-        let g:TagbarOn=1
-      end
-    else
-      let g:TagbarOn=1
-      if bufwinnr("__Tagbar__")==4
-        let g:twomainwins=2
+    " scan window environment via Python script (using :tabs command)
+    let l:tabnr = tabpagenr()
+    call NavScanTabsCommand(l:tabnr)
+    " check last main window variable
+    if (g:twomainwins==2) && (winnr()!=1) && (winnr()!=g:winright)
+      if (winnr()==g:NERDTreeOn+1)
+        let g:lastmainwin=g:NERDTreeOn+g:locationlistleft+2
+      elseif(winnr()==g:NERDTreeOn+g:locationlistleft+2)
+        let g:lastmainwin=g:NERDTreeOn+1
+      else
+        echo "Error: NavScanEnv() has problems with check last main window variable!"
       endif
     endif
-    " calculate right window number
-    let g:winright=g:NERDTreeOn+g:twomainwins+g:TagbarOn
-    " check last window variables
-    " let g:lastmainwin=1
+    " check last window variable
     " let g:lastwin=1
     " call NavShowWinInfo()
   endfunction
@@ -128,15 +122,17 @@
 
   " show window information
   fun NavShowWinInfo()
-    echo "Devel Mode:       "g:develmode
-    echo "NERDTreeOn:       "g:NERDTreeOn
-    echo "TagbarOn:         "g:TagbarOn
-    echo "winright:         "g:winright
-    echo "twomainwins:      "g:twomainwins
-    echo "tabcounter:       "g:tabcounter
-    echo "Last Window:      "g:lastwin
-    echo "Last Main Window: "g:lastmainwin
-    echo "Last Tab:         "g:lasttab
+    echo "Devel Mode:        "g:develmode
+    echo "NERDTreeOn:        "g:NERDTreeOn
+    echo "TagbarOn:          "g:TagbarOn
+    echo "locationlistleft:  "g:locationlistleft
+    echo "locationlistright: "g:locationlistright
+    echo "winright:          "g:winright
+    echo "twomainwins:       "g:twomainwins
+    echo "tabcounter:        "g:tabcounter
+    echo "Last Window:       "g:lastwin
+    echo "Last Main Window:  "g:lastmainwin
+    echo "Last Tab:          "g:lasttab
   endf 
   command! NavShowWinInfo call NavShowWinInfo()
 
@@ -145,11 +141,12 @@
     if(winnr()>1)
       let l:tmp=winnr()
       let l:targetwindow=l:tmp-1
-      exe l:targetwindow . "wincmd w"
+      exe 1 . "wincmd h"
       let g:lastwin=l:tmp
       if (g:twomainwins==2) && ((l:tmp==2)||(l:tmp==3))
         let g:lastmainwin=l:tmp
       endif
+      call NavScanEnv()
       echo "Switched to left window!"
     else
       echo "Error: No left window found!"
@@ -161,14 +158,47 @@
     if(winnr()<g:winright)
       let l:tmp=winnr()
       let l:targetwindow=l:tmp+1
-      exe l:targetwindow . "wincmd w"
+      exe 1 . "wincmd l"
       let g:lastwin=l:tmp
       if (g:twomainwins==2) && ((l:tmp==2)||(l:tmp==3))
         let g:lastmainwin=l:tmp
       endif
+      call NavScanEnv()
       echo "Switched to right window!"
     else
       echo "Error: No right window found!"
+    endif
+  endfunction
+  
+  " switch to the lower window 
+  function! NavSwitchWinDown()
+    call NavScanEnv()
+    if (winnr()==2) && (g:locationlistleft==1)
+      let l:tmp=winnr()
+      exe 1 . "wincmd j"
+      let g:lastwin=l:tmp
+    elseif (g:twomainwins==2) && (winnr()==3) && (g:locationlistright==1)
+      let l:tmp=winnr()
+      exe 1 . "wincmd j"
+      let g:lastwin=l:tmp
+    else
+      echo "Error: No lower window found!"
+    endif
+  endfunction
+  
+  " switch to the upper window 
+  function! NavSwitchWinUp()
+    call NavScanEnv()
+    if (winnr()==2) && (g:locationlistleft==1)
+      let l:tmp=winnr()
+      exe 1 . "wincmd k"
+      let g:lastwin=l:tmp
+    elseif (g:twomainwins==2) && (winnr()==3) && (g:locationlistright==1)
+      let l:tmp=winnr()
+      exe 1 . "wincmd k"
+      let g:lastwin=l:tmp
+    else
+      echo "Error: No upper window found!"
     endif
   endfunction
   
@@ -235,10 +265,14 @@
   
   " toggle with last tab
   function! NavToggleLastTab()
-    let tmp=tabpagenr()
-    exec("tabnext " . g:lasttab)
-    let g:lasttab=tmp
-    call NavScanEnv()
+    if g:tabcounter>1
+      let tmp=tabpagenr()
+      exec("tabnext " . g:lasttab)
+      let g:lasttab=tmp
+      call NavScanEnv()
+    else
+      echo "There is only one tab available!"
+    endif
   endfunction
 
   " toggle between main windows
@@ -496,6 +530,15 @@
   endfunction
   " corresponding function invoke
   command! SyntaxItem echo(SyntaxItem())
+
+  " test function
+  function! RedirectOutpput(cmd)
+    redir => output
+    silent execute a:cmd
+    redir END
+    return output
+  endfunction
+  " command! -nargs=+ -complete=command TabMessage call TabMessage(<q-args>)
 
   " If only 2 windows left, NERDTree and Tag_List, close vim or current tab
   " fun! NoExcitingBuffersLeft()

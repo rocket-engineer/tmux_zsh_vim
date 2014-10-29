@@ -11,6 +11,7 @@
 !.vim/colors/*
 !.vim/ftplugin/*
 !.vim/misc/*
+!.vim/misc/Python/*
 !.vim/misc/UltiSnips/*
 !.vim/nerdtree_plugin/*
 !.vim/syntax/*

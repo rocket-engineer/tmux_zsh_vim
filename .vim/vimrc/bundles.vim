@@ -38,11 +38,14 @@ if 1 == VimRCBundlesStandard
 	" Vimshell:
 	"Plugin 'Shougo/vimshell.vim'
 
-	"Plugin 'godlygeek/tabular'
-	"Plugin 'tpope/vim-eunuch'
+  " Whitespace: Get rid of trailing whitespace at ease
+  " Plugin 'ntpeters/vim-better-whitespace'
 
   " Xterm_color_table: Shows the 256 colors of vim and their corresponding numbers
   Plugin 'guns/xterm-color-table.vim'
+
+	"Plugin 'godlygeek/tabular'
+	"Plugin 'tpope/vim-eunuch'
 
 endif
 

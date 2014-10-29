@@ -58,6 +58,10 @@ if filereadable(glob("~/.vim/vimrc/vim.pre.conf"))
 	so ~/.vim/vimrc/vim.pre.conf
 endif
 
+if 1 == VimRCPython
+	so ~/.vim/vimrc/python.vim
+endif
+
 if 1 == VimRCFunctions
 	so ~/.vim/vimrc/functions.vim
 endif

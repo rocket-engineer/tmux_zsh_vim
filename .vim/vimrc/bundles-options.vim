@@ -38,7 +38,6 @@ if 1 == VimRCBundlesOptions
     let g:airline_powerline_fonts = 1                           " enable powerline fonts
     " let g:airline#extensions#syntastic#enabled = 1             " enable syntastic integration
     " let g:airline#extensions#tagbar#enabled = 1
-    " set guif"+Pont=PowerlineSymbols
 
 
     " +------------------------------------------+
@@ -227,7 +226,8 @@ if 1 == VimRCBundlesOptions
     " let g:syntastic_c_check_header = 0                          " enable header checking
 	  " let g:syntastic_c_no_default_include_dirs = 1
     " let g:syntastic_c_config_file = '.syntastic_config'         " enable project specific config file
-    let g:syntastic_c_include_dirs = [ '/opt/intel/impi/5.0.1.035/intel64/include' ]
+    " let g:syntastic_c_include_dirs = [ '/opt/intel/impi/5.0.1.035/intel64/include' ]
+    let g:syntastic_c_include_dirs = [ '/home/man-behind-moon/Misc/Tools/local/openmpi/lib' ]
     
     " C++ language settings
     " let ...

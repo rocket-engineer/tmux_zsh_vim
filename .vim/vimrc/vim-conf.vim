@@ -18,6 +18,7 @@ let VimRCBundlesDevel    = 1
 let VimRCStandard        = 1
 let VimRCDevel           = 1
 let VimRCFiletypes       = 1
+let VimRCPython          = 1
 let VimRCFunctions       = 1
 let VimRCKeymap          = 1
 let VimRCBundlesOptions  = 1
