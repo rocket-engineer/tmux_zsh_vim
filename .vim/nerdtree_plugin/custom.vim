@@ -26,17 +26,17 @@ call NERDTreeAddKeyMap({
        \ 'scope': 'FileNode',
        \ 'override': '1' })
 
-call NERDTreeAddKeyMap({
-       \ 'key': '<C-k>',
-       \ 'callback': 'NavToggleMainwin',
-       \ 'quickhelpText': 'toggles with last main win',
-       \ 'scope': 'all',
-       \ 'override': '1' })
-
-call NERDTreeAddKeyMap({
-       \ 'key': '<C-j>',
-       \ 'callback': 'NavToggleLastTab',
-       \ 'quickhelpText': 'toggles with last main win',
-       \ 'scope': 'all',
-       \ 'override': '1' })
+" call NERDTreeAddKeyMap({
+"        \ 'key': '<C-k>',
+"        \ 'callback': 'NavToggleMainwin',
+"        \ 'quickhelpText': 'toggles with last main win',
+"        \ 'scope': 'all',
+"        \ 'override': '1' })
+"
+" call NERDTreeAddKeyMap({
+"        \ 'key': '<C-j>',
+"        \ 'callback': 'NavToggleLastTab',
+"        \ 'quickhelpText': 'toggles with last main win',
+"        \ 'scope': 'all',
+"        \ 'override': '1' })
 

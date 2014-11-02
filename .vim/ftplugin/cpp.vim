@@ -5,5 +5,5 @@
 
 " window navigation 
 autocmd VimEnter * call NavSetDevelMode()
-autocmd BufCreate * call NavScanEnv()
+" autocmd BufCreate * call NavScanEnv()
 

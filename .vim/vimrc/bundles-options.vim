@@ -77,7 +77,7 @@ if 1 == VimRCBundlesOptions
     " settings
     let g:tagbar_sort = 0   "
     let g:tagbar_iconchars = ['▸', '▾']                         " define Tagbar icon characters
-    autocmd FileType fortran,c,cpp,cuda,vim nested :TagbarOpen  " open Tagbar for these file types automatically
+    " autocmd FileType fortran,c,cpp,cuda,vim nested :TagbarOpen  " open Tagbar for these file types automatically
     
     " define what to show
     
