@@ -25,6 +25,7 @@
       " check whether a tab or a right window was closed
       call NavDetectClosedWin()
       quit
+      exec("bwipe " . bufnr("$"))
       " move cursor to main window
       if (g:NERDTreeOn==1) && (winnr()==1)
         exe 2 . "wincmd w"

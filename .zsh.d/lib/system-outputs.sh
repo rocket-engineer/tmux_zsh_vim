@@ -110,29 +110,60 @@ function printSystemInfo()
 {
     printHeaderTopLine
 
-    #if [ -f '/var/log/lastlog' ]; then
-    #    local tll=$(lastlog -u "$USER_NAME" | tail -1 | sed 's/  */ /g' | cut -d ' ' -f2-)
-    #    local from=$(echo "$tll" | rev | cut -d ' ' -f7- | rev)
-    #    local date=$(echo "$tll" | rev | cut -d ' ' -f1-6 | rev)
-    #    lastLog="From: $from Date: $date"
-    #else
-    #    lastLog=$(last "$USER_NAME" 2>/dev/null | tail -3 | head -1| sed 's/  */ /g' | cut -d ' ' -f4- | tr -d '\n')
-    #    if [ -z "${lastLog}" ]; then
-    #        lastLog="Keine Daten vorhanden"
-    #    fi
-    #fi
+    tll=$(lastlog -u "$USER" | tail -1 | sed 's/  */ /g' | cut -d ' ' -f2-)
+    lastLog=$(echo "$tll" | rev | cut -d ' ' -f1-6 | rev)
+    temp_cpu=$(sensors | grep -E 'Physical id 0' | cut -c17-24)
+    temp_gpu=$(nvidia-smi -q -d TEMPERATURE | grep "GPU Current Temp" | cut -c39-40).0$(echo -e '\u00B0'C)
+    fan_cpu1=$(sensors | grep -E 'fan2' | cut -c24-31)
+    fan_cpu2=$(sensors | grep -E 'fan6' | cut -c24-31)
+    fan_gpu=$(nvidia-smi -i 0 -q | grep "Fan Speed" | cut -c39-42)
+    fan_front1=$(sensors | grep -E 'fan3' | cut -c24-31)
+    fan_front2=$(sensors | grep -E 'fan5' | cut -c24-31)
+    fan_front3=$(sensors | grep -E 'fan1' | cut -c24-31)
+    fan_back=$(sensors | grep -E 'fan4' | cut -c24-31)
+    mem_free=$(free -m | grep "Mem:" | cut -c36-40)
+    mem_total=$(free -m | grep "Mem:" | cut -c14-18)
+    swap_free=$(free -m | grep "Swap:" | cut -c36-40)
+    swap_total=$(free -m | grep "Swap:" | cut -c14-18)
+    disk_root_free=$(df -h | grep "/vg_ssd1-lv_root" | cut -c44-48)
+    disk_root_total=$(df -h | grep "/vg_ssd1-lv_root" | cut -c32-36)
+    disk_home_free=$(df -h | grep "/dev/sdb1" | cut -c44-48)
+    disk_home_total=$(df -h | grep "/dev/sdb1" | cut -c32-36)
+    disk_data_free=$(df -h | grep "/vg_hdd2-lv_data" | cut -c44-48)
+    disk_data_total=$(df -h | grep "/vg_hdd2-lv_data" | cut -c32-36)
+    disk_backup_free=$(df -h | grep "/vg_hdd2-lv_backup" | cut -c44-48)
+    disk_backup_total=$(df -h | grep "/vg_hdd2-lv_backup" | cut -c32-36)
+    disk_scratch_free=$(df -h | grep "/vg_ssd1-lv_scratch" | cut -c44-48)
+    disk_scratch_total=$(df -h | grep "/vg_ssd1-lv_scratch" | cut -c32-36)
 
     printSystemInfoLine "    Last Login" "$lastLog"
     printSystemInfoLine "          Time" "$(date) (Unix-Timestamp: $(date +%s))"
     printSystemInfoLine "     Processes" "${USER}'s $(ps aux | grep $USER | wc -l) / Total: $(ps aux | wc -l)"
     printSystemInfoLine "        Uptime" "$(uptime | sed 's/  */ /g' | cut -d ' ' -f4- | sed 's/, load.*$//g' | rev | cut -d ',' -f2- | rev )"
     printSystemInfoLine "      Load AVG" "$(uptime | sed 's/  */ /g' | cut -d ' ' -f4- | sed 's/^.*load average: //g' )"
-    printSystemInfoLine "  Temperatures" "$(sensors | grep -E 'Physical id 0' | awk 'BEGIN { FS = " "} { printf "CPU: %s\n",$4 }')" # | Mainboard: | GPU1: | GPU2: "
-    printSystemInfoLine "          Fans" "$(sensors | grep -E 'fan1' | awk 'BEGIN { FS = " "} { printf "CPU: %s %s\n",$2,$3 }')" # | Front: | Back: " # | GPU1: | GPU2:"
-    printSystemInfoLine "           Mem" "$(free -m | grep -E 'Mem' | awk 'BEGIN { FS = " "} { printf "MemFree: %sM / MemTotal: %sM\n",$4,$2 }') | $(free -m | grep -E 'Swap' | awk 'BEGIN { FS = " "} { printf "SwapFree: %sM / SwapTotal: %sM\n",$4,$2 }')"
-    printSystemInfoLine "       Disks 1" "$(df -h | grep -E '\/$' | awk 'BEGIN { FS = " "} { printf "RootFree: %s / RootTotal: %s\n",$4,$2 }') | $(df -h | grep -E '\/home$' | awk 'BEGIN { FS = " "} { printf "HomeFree: %s / HomeTotal: %s\n",$4,$2 }')"
-#    printSystemInfoLine "       Disks 2" ""
-#    printSystemInfoLine "       Disks 3" ""
+    printSystemInfoLine "  Temperatures" "$(printf "CPU: %s" "$temp_cpu") | $(\
+                                            printf "GPU: +%s" "$temp_gpu")"
+    printSystemInfoLine "        Fans 1" "$(printf "CPU1:   %s" "$fan_cpu1") | $(\
+                                            printf "CPU2:   %s" "$fan_cpu2") | $(\
+                                            printf "GPU: +%s" "$fan_gpu")"
+    printSystemInfoLine "        Fans 2" "$(printf "Front1: %s" "$fan_front1") | $(\
+                                            printf "Front2: %s" "$fan_front2") | $(
+                                            printf "Front3: %s" "$fan_front3") | $(
+                                            printf "Back: %s" "$fan_back")"
+    printSystemInfoLine "        Memory" "$(printf "MemFree: %sM / MemTotal: %sM" "$mem_free" \
+                                                                                  "$mem_total") | $(\
+                                            printf "SwapFree: %sM / SwapTotal: %sM" "$swap_free" \
+                                                                                    "$swap_total")"
+    printSystemInfoLine "       Disks 1" "$(printf "RootFree: %s / RootTotal: %s\n" "$disk_root_free" \
+                                                                                    "$disk_root_total") | $(\
+                                            printf "BackupFree:  %s / BackupTotal:  %s\n" "$disk_backup_free" \
+                                                                                        "$disk_backup_total")"
+    printSystemInfoLine "       Disks 2" "$(printf "HomeFree: %s / HomeTotal: %s\n" "$disk_home_free" \
+                                                                                    "$disk_home_total") | $(\
+                                            printf "ScratchFree: %s / ScratchTotal: %s\n" "$disk_scratch_free" \
+                                                                                          "$disk_scratch_total")"
+    printSystemInfoLine "       Disks 3" "$(printf "DataFree: %s / DataTotal: %s\n" "$disk_data_free" \
+                                                                                    "$disk_data_total")"
 
     printHeaderBottomLine
 }
@@ -208,10 +239,11 @@ function printLogo()
     sw[5]="                                                "
     sw[6]="Power-Shell provided by Tobias Dittmann <research@man-behind-moon.com>"
     sw[7]="                                         "
-    sw[8]="Last Update: ${lastUpdate} — Version: ${ZSHRC_VERSION}"
+    sw[8]="                                         "
+    sw[9]="Last Update: ${lastUpdate} — Version: ${ZSHRC_VERSION}"
 
     if [ $updateFound -eq 1 ]; then
-        sw[9]="=> New update available! (zshrc --update)"
+        sw[10]="=> New update available! (zshrc --update)"
     fi
 
     count=1

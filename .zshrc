@@ -45,7 +45,7 @@ if [ -f "${ZSH_CONFIG_ROOT}/modules.conf" ]; then
     source "${ZSH_CONFIG_ROOT}/modules.conf"
 fi
 
-# use CTRL-s and CTRL-q in tmux
+# use CTRL-s and CTRL-q in Tmux
 vim() { stty -ixon; command vim "$@"; stty -ixon; }
 
 
