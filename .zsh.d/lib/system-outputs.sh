@@ -138,7 +138,7 @@ function printSystemInfo()
 
     printSystemInfoLine "    Last Login" "$lastLog"
     printSystemInfoLine "          Time" "$(date) (Unix-Timestamp: $(date +%s))"
-    printSystemInfoLine "     Processes" "${USER}'s $(ps aux | grep $USER | wc -l) / Total: $(ps aux | wc -l)"
+    printSystemInfoLine "     Processes" "${USER}'s: $(ps aux | grep $USER | wc -l) / Total: $(ps aux | wc -l)"
     printSystemInfoLine "        Uptime" "$(uptime | sed 's/  */ /g' | cut -d ' ' -f4- | sed 's/, load.*$//g' | rev | cut -d ',' -f2- | rev )"
     printSystemInfoLine "      Load AVG" "$(uptime | sed 's/  */ /g' | cut -d ' ' -f4- | sed 's/^.*load average: //g' )"
     printSystemInfoLine "  Temperatures" "$(printf "CPU: %s" "$temp_cpu") | $(\
