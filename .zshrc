@@ -57,7 +57,8 @@ vim() { stty -ixon; command vim "$@"; stty -ixon; }
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-ZSH_THEME="darkblood"
+ZSH_THEME="man-behind-moon"
+# ZSH_THEME="darkblood"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

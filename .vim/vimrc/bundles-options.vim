@@ -240,29 +240,29 @@ if 1 == VimRCBundlesOptions
     " +------------------------------------------+
     
     " settings
-    "let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py' 	" locate global YCM conf file
-    "let g:ycm_confirm_extra_conf = 0 													" don't ask for local conf confirmation
-    "set pumheight=30 																					" limit popup menu height
-    "" let g:ycm_complete_in_comments = 0                      " enable YCM in comments
-    "let g:ycm_autoclose_preview_window_after_completion = 1 	" close preview window after completion
-    "let g:ycm_autoclose_preview_window_after_insertion = 1 		" close preview window after insertion
-		"set ttimeoutlen=50 																				" for faster InsertLeave triggerin
-    "set conceallevel=2
-    "set concealcursor=vin
-    "let g:ycm_concealing_delimiters = ['⟪', '⟫'] 							" set concealing delimiters
-    "let g:ycm_extra_spacing = 1 															" one extra space between arguments
-    "let g:ycm_register_as_syntastic_checker = 0               " disable syntax checking in YCM
-    "let g:ycm_collect_identifiers_from_tags_files = 1         " enable collect data from tags files
+    let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py' 	" locate global YCM config file
+    let g:ycm_confirm_extra_conf = 0 													" don't ask for local config confirmation
+    set pumheight=30 																					" limit popup menu height
+    " let g:ycm_complete_in_comments = 0                      " enable YCM in comments
+    let g:ycm_autoclose_preview_window_after_completion = 1 	" close preview window after completion
+    let g:ycm_autoclose_preview_window_after_insertion = 1 		" close preview window after insertion
+	  set ttimeoutlen=50 																				" for faster InsertLeave triggerin
+    set conceallevel=2
+    set concealcursor=vin
+    let g:ycm_concealing_delimiters = ['⟪', '⟫'] 							" set concealing delimiters
+    let g:ycm_extra_spacing = 1 															" one extra space between arguments
+    let g:ycm_register_as_syntastic_checker = 0               " disable syntax checking in YCM
+    let g:ycm_collect_identifiers_from_tags_files = 1         " enable collect data from tags files
     
-    " make YCM compatible with UltiSnips (using supertab)
-    "let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-    "let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-    "let g:SuperTabDefaultCompletionType = '<C-n>'
-		
-    " YCM filetype blacklist
-    "" let g:ycm_filetype_blacklist = {
-    ""       \ 'fortran' : 1
-    ""       \}
+    " make YCM compatible with UltiSnips (using Supertab)
+    " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    " let g:SuperTabDefaultCompletionType = '<C-n>'
+
+    " YCM file type blacklist
+    " let g:ycm_filetype_blacklist = {
+    "       \ 'fortran' : 1
+    "       \}
 
 
     " +------------------------------------------+

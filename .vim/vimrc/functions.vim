@@ -464,6 +464,23 @@
 "     endif
   endfunction
 
+  " jump to underlying tag by opening in second main windows
+  function! NavTagInRightMainWin()
+    " check if second main window is available
+    if g:twomainwins==1
+      " open tag in second main window
+      :let l:word=expand("<cword>")
+      :vnew
+      exec("tjump " . l:word)
+      " check new environment
+      call NavScanEnv()
+    elseif g:twomainwins==2
+      echo "No more main window slots available!"
+    else
+      echo "01 Error: Problem in NavTagInRightMainWin !!!"
+    endif
+  endfunction
+
 
   " +--------------------------------------------+
   " | Syntastic                                  |

@@ -109,12 +109,12 @@ match OverLength /\%111v.\+/
 " +----------------------------------------------+
 
 " disable folding for multicolumn commments
-":let c_no_comment_fold = 1
-		
+:let c_no_comment_fold = 1
+
 " --> folding rules
-"set foldmethod=syntax
-"" set foldlevelstart=0
-"set foldnestmax=1
+set foldmethod=syntax
+set foldlevelstart=1
+" set foldnestmax=1
 ""set foldlevel=5
 
 " Don't screw up folds when inserting text that might affect them, until
@@ -123,10 +123,8 @@ match OverLength /\%111v.\+/
 "autocmd InsertLeave * let &l:foldmethod=w:last_fdm
 
 " --> FORTRAN specific
-"let fortran_fold=1                   		" activate folding in FORTRAN
-"" let fortran_fold_conditionals=1    		" fold also do, while etc.
+let fortran_fold=1                   		" activate folding in FORTRAN
 "let fortran_more_precise=1           		" more syntax coloring in FORTRAN
-"" let fortran_fold_multilinecomments=1 	" fold also multiline comments
 
 " --> highlight on overlength
 "" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -146,4 +144,7 @@ set spell                                                       " enable spell c
 " set keymaps
 set spelllang=en_us
 set spellfile=$HOME/Misc/Seafile/Important_data/Misc/Spell/en.utf-8.add
+
+" exclude words with 
+" :syn match myExNonWords +\<\p*[^A-Za-z \t]\p*\>+ contains=@NoSpell
 

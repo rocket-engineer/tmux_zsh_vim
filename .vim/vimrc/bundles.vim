@@ -14,7 +14,7 @@ if 1 == VimRCBundlesStandard
 	" Airline: Modified tab lines
 	Plugin 'bling/vim-airline'
 
-	" Tmuxline: tmux statusline generator and airline integration
+	" Tmuxline: Tmux status line generator and airline integration
 	Plugin 'edkolev/tmuxline.vim'
 
   " Fixkey: this package makes it possible to use ALT-Keys
@@ -64,15 +64,15 @@ if 1 == VimRCBundlesDevel
 	" TComment: provides file-type sensible comments
 	Plugin 'tomtom/tcomment_vim'
 
-	" UltiSnps: Code Snippets
+	" UltiSnips: Code Snippets
 	Plugin 'SirVer/ultisnips'
 	" Plugin 'honza/vim-snippets'
 
 	" Syntastic: On the fly syntax checking
 	Plugin 'scrooloose/syntastic'
 
-	" YouCompleteMe: AutoCompletion for C-Semantic languages
-	"Plugin 'oblitum/YouCompleteMe'
+	" YouCompleteMe: Auto Completion for C-Semantic languages
+	Plugin 'oblitum/YouCompleteMe'
 
 	" SuperTab: Brings all TAB-Key based plugins together
 	"Plugin 'ervandew/supertab'

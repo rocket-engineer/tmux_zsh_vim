@@ -156,9 +156,9 @@ inoremap <C-a> <Esc>:call NavToggleNERDTree()<CR>
 vnoremap <C-a> <Esc>:call NavToggleNERDTree()<CR>
 
 " toggle Tagbar window
-nnoremap <C-w>      :call NavToggleTagbar()<CR>
-inoremap <C-w> <Esc>:call NavToggleTagbar()<CR>
-vnoremap <C-w> <Esc>:call NavToggleTagbar()<CR>
+nnoremap <C-o>      :call NavToggleTagbar()<CR>
+inoremap <C-o> <Esc>:call NavToggleTagbar()<CR>
+vnoremap <C-o> <Esc>:call NavToggleTagbar()<CR>
 
 " swap left/right window
 " nnoremap <M-S-j> <C-W>x	          " swap current window with next one
@@ -167,6 +167,23 @@ vnoremap <C-w> <Esc>:call NavToggleTagbar()<CR>
 " break out current window into a new tab
 nnoremap <M-S-c> <C-W>T	          " break out current window into a new tabview
 inoremap <M-S-c> <Esc><C-W>T	    " break out current window into a new tabview
+
+
+
+" +----------------------------------------------+
+" | Tag Management                               |
+" +----------------------------------------------+
+
+" open tag in same main window (and check for multiple tags)
+nnoremap <c-]> g<c-]>
+vnoremap <c-]> g<c-]>
+nnoremap g<c-]> <c-]>
+vnoremap g<c-]> <c-]>
+
+" open tag in second main win
+nnoremap <C-w>] :call NavTagInRightMainWin()<CR>
+
+" jump back in tag stack
 
 
 " +----------------------------------------------+
