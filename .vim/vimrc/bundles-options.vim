@@ -211,28 +211,23 @@ if 1 == VimRCBundlesOptions
     exec 'hi! SyntasticWarning ' . s:getbg('SyntasticWarningLine')
     highlight SyntasticError ctermfg=red
     highlight SyntasticWarning ctermfg=yellow
-    
+
     " FORTRAN language settings
-    let g:syntastic_fortran_compiler = 'gfortran'               " define FORTRAN checker
-	  " let g:syntastic_fortran_errorformat = '%f:%l: %trror: %m'   " define FORTRAN error format
+    let g:syntastic_fortran_checkers = ["ifort"]                  " define FORTRAN checker
     " let g:syntastic_fortran_remove_include_errors = 1           " disable include errors
-    " let g:syntastic_c_config_file = '.syntastic_config'         " enable project specific config file
-    " let g:syntastic_fortran_include_dirs = [ 'include' ]
-   
+    let g:syntastic_c_config_file = '.syntastic_fortran_config'   " define FORTRAN config file
+    let g:syntastic_fortran_include_dirs = [ '/opt/intel/impi_latest/include64' ]
+
     " C language settings
-    " let g:syntastic_c_compiler = 'gcc'                          " define C checker
-    " let g:syntastic_c_errorformat = '%f:%l:%c: %trror: %m'      " define C error format 
+    let g:syntastic_fortran_checkers = ["gcc"]                    " define C checker
     " let g:syntastic_c_remove_include_errors = 1                 " disable include errors
-    " let g:syntastic_c_check_header = 0                          " enable header checking
-	  " let g:syntastic_c_no_default_include_dirs = 1
-    " let g:syntastic_c_config_file = '.syntastic_config'         " enable project specific config file
-    " let g:syntastic_c_include_dirs = [ '/opt/intel/impi/5.0.1.035/intel64/include' ]
+    " let g:syntastic_c_config_file = '.syntastic_c_config'       " define C config file
     let g:syntastic_c_include_dirs = [ '/home/man-behind-moon/Misc/Tools/local/openmpi/lib' ]
-    
+
     " C++ language settings
     " let ...
     " let ...
-    let g:syntastic_cpp_include_dirs = [ '/opt/intel/impi/5.0.1.035/intel64/include' ]
+    " let g:syntastic_cpp_include_dirs = [ '/opt/intel/impi/5.0.1.035/intel64/include' ]
 
 
     " +------------------------------------------+
