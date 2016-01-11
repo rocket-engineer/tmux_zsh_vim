@@ -19,12 +19,13 @@ alias h='htop'
 alias f='free -m'
 alias p='pwd'
 
-# usefull
+# useful
 alias ls='ls $COLOR_OPTIONS --group-directories-first'
 alias l='ls -lh $COLOR_OPTIONS --group-directories-first'
 alias ll='ls -lh $COLOR_OPTIONS --group-directories-first'
 alias la='ls -lhA $COLOR_OPTIONS --group-directories-first'
 alias grep='grep $COLOR_OPTIONS'
+alias grepr='grep -irnI --exclude-dir=".svn" $COLOR_OPTIONS'
 #alias less='less -R'
 #alias mkdir='mkdir -p -v'
 #alias finder='find . -maxdepth 1 -type d -print0 | xargs -0 du -hs | sort -rn'
@@ -39,6 +40,7 @@ alias grep='grep $COLOR_OPTIONS'
 # misc
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
+alias mo="module"
 #alias acp="rsync -avl --progress"
 
 #complete -W "$(cat "${HOME}/.bash_history" | egrep '^ssh |^scp ' | grep '\.' | egrep '^[^0-9]' | sort | uniq | sed 's/^ssh //' | sed 's/ $//g' | sed 's/^/\"/' | sed 's/$/\"/');" ssh

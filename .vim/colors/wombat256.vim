@@ -54,6 +54,10 @@ hi Type			ctermfg=192						cterm=none		guifg=#cae682	gui=none
 hi Special		ctermfg=194						cterm=none		guifg=#e7f6da	gui=none
 hi String		ctermfg=113						cterm=none		guifg=#95e454	gui=italic
 hi Comment		ctermfg=246						cterm=none		guifg=#99968b	gui=italic
+" hi HDF5n        ctermfg=56                      cterm=none      guifg=#99968b   gui=italic
+" hi HDF5b        ctermfg=56                      cterm=bold      guifg=#99968b   gui=italic
+" hi NetCDFn      ctermfg=40                      cterm=none      guifg=#99968b   gui=italic
+" hi NetCDFb      ctermfg=40                      cterm=bold      guifg=#99968b   gui=italic
 
 
 " Links

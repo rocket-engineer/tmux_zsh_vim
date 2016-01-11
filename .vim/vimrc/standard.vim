@@ -81,11 +81,17 @@ if !exists("autocmd_colorscheme_loaded")
   let autocmd_colorscheme_loaded = 1
   " TODO
   autocmd ColorScheme * highlight Todo	  ctermfg=232	 ctermbg=220	cterm=bold
+  " overlength
   autocmd ColorScheme * highlight OverLength ctermbg=red ctermfg=white guibg=#592929
   " parallel standards
-  autocmd ColorScheme * highlight MPI 		ctermfg=40 								cterm=bold
-  autocmd ColorScheme * highlight OpenMP 	ctermfg=27 								cterm=bold 			
-  autocmd ColorScheme * highlight CUDA 		ctermfg=201               cterm=bold
+  autocmd ColorScheme * highlight MPIn 		ctermfg=40 								cterm=none
+  autocmd ColorScheme * highlight MPIb 		ctermfg=40 								cterm=bold
+  autocmd ColorScheme * highlight OpenMPn	ctermfg=27 								cterm=none
+  autocmd ColorScheme * highlight OpenMPb	ctermfg=27 								cterm=bold 			
+  autocmd ColorScheme * highlight CUDAn		ctermfg=201               cterm=none
+  autocmd ColorScheme * highlight CUDAb		ctermfg=201               cterm=bold
+  autocmd ColorScheme * highlight NetCDFn	ctermfg=160               cterm=none
+  autocmd ColorScheme * highlight NetCDFb	ctermfg=160               cterm=bold
 endif
 
 " load color scheme
@@ -114,7 +120,7 @@ match OverLength /\%111v.\+/
 " --> folding rules
 set foldmethod=syntax
 set foldlevelstart=1
-" set foldnestmax=1
+set foldnestmax=2
 ""set foldlevel=5
 
 " Don't screw up folds when inserting text that might affect them, until

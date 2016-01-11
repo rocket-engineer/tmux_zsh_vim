@@ -213,15 +213,15 @@ if 1 == VimRCBundlesOptions
     highlight SyntasticWarning ctermfg=yellow
 
     " FORTRAN language settings
-    let g:syntastic_fortran_checkers = ["ifort"]                  " define FORTRAN checker
-    " let g:syntastic_fortran_remove_include_errors = 1           " disable include errors
-    let g:syntastic_c_config_file = '.syntastic_fortran_config'   " define FORTRAN config file
+    let g:syntastic_fortran_checkers = ["gfortran"]                     " define FORTRAN checker
+    " let g:syntastic_fortran_remove_include_errors = 1                 " disable include errors
+    let g:syntastic_fortran_config_file = '.syntastic_fortran_config'   " define FORTRAN config file
     let g:syntastic_fortran_include_dirs = [ '/opt/intel/impi_latest/include64' ]
 
     " C language settings
-    let g:syntastic_fortran_checkers = ["gcc"]                    " define C checker
-    " let g:syntastic_c_remove_include_errors = 1                 " disable include errors
-    " let g:syntastic_c_config_file = '.syntastic_c_config'       " define C config file
+    let g:syntastic_c_checkers = ["gcc"]                                " define C checker
+    " let g:syntastic_c_remove_include_errors = 1                         " disable include errors
+    " let g:syntastic_c_config_file = '.syntastic_c_config'               " define C config file
     let g:syntastic_c_include_dirs = [ '/home/man-behind-moon/Misc/Tools/local/openmpi/lib' ]
 
     " C++ language settings
